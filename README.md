@@ -1,4 +1,4 @@
-#Naval battle
+# Naval battle
 started on 6-12-2024
 
 ## 🏴‍☠️ Ahoy, Mateys!
