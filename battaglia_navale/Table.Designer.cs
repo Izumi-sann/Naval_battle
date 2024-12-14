@@ -28,73 +28,75 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Playing_board = new Panel();
-            Cambia_tabella = new Button();
-            Lable1 = new Label();
-            panel1 = new Panel();
-            SuspendLayout();
+            User_board = new System.Windows.Forms.Panel();
+            this.Cambia_tabella = new System.Windows.Forms.Button();
+            this.Lable1 = new System.Windows.Forms.Label();
+            Computer_board = new System.Windows.Forms.Panel();
+            this.SuspendLayout();
             // 
-            // Playing_board
+            // User_board
             // 
-            Playing_board.AutoSize = true;
-            Playing_board.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            Playing_board.Location = new Point(203, 12);
-            Playing_board.Name = "Playing_board";
-            Playing_board.Size = new Size(0, 0);
-            Playing_board.TabIndex = 0;
+            User_board.AutoSize = true;
+            User_board.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            User_board.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            User_board.Location = new System.Drawing.Point(250, 12);
+            User_board.Name = "User_board";
+            User_board.Size = new System.Drawing.Size(4, 4);
+            User_board.TabIndex = 0;
             // 
             // Cambia_tabella
             // 
-            Cambia_tabella.Location = new Point(12, 69);
-            Cambia_tabella.Name = "Cambia_tabella";
-            Cambia_tabella.Size = new Size(174, 48);
-            Cambia_tabella.TabIndex = 1;
-            Cambia_tabella.Text = "Cambia caratteristiche tabella";
-            Cambia_tabella.UseVisualStyleBackColor = true;
-            Cambia_tabella.Click += Modifica_tabella_Click;
+            this.Cambia_tabella.Location = new System.Drawing.Point(12, 69);
+            this.Cambia_tabella.Name = "Cambia_tabella";
+            this.Cambia_tabella.Size = new System.Drawing.Size(174, 48);
+            this.Cambia_tabella.TabIndex = 1;
+            this.Cambia_tabella.Text = "Cambia caratteristiche tabella";
+            this.Cambia_tabella.UseVisualStyleBackColor = true;
+            this.Cambia_tabella.Click += new System.EventHandler(this.Modifica_tabella_Click);
             // 
             // Lable1
             // 
-            Lable1.AutoSize = true;
-            Lable1.Location = new Point(35, 12);
-            Lable1.Name = "Lable1";
-            Lable1.Size = new Size(137, 20);
-            Lable1.TabIndex = 2;
-            Lable1.Text = "Impostazioni gioco";
+            this.Lable1.AutoSize = true;
+            this.Lable1.Location = new System.Drawing.Point(35, 12);
+            this.Lable1.Name = "Lable1";
+            this.Lable1.Size = new System.Drawing.Size(137, 20);
+            this.Lable1.TabIndex = 2;
+            this.Lable1.Text = "Impostazioni gioco";
             // 
-            // panel1
+            // Computer_board
             // 
-            panel1.AutoSize = true;
-            panel1.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            panel1.Location = new Point(323, 22);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(0, 0);
-            panel1.TabIndex = 1;
+            Computer_board.AutoSize = true;
+            Computer_board.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            Computer_board.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            Computer_board.Location = new System.Drawing.Point(343, 12);
+            Computer_board.Name = "Computer_board";
+            Computer_board.Size = new System.Drawing.Size(4, 4);
+            Computer_board.TabIndex = 1;
             // 
             // Table
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
-            AutoScaleMode = AutoScaleMode.Font;
-            AutoSize = true;
-            AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            ClientSize = new Size(830, 610);
-            Controls.Add(panel1);
-            Controls.Add(Lable1);
-            Controls.Add(Cambia_tabella);
-            Controls.Add(Playing_board);
-            FormBorderStyle = FormBorderStyle.FixedSingle;
-            MaximizeBox = false;
-            Name = "Table";
-            Text = "Form1";
-            Load += Form1_Load;
-            ResumeLayout(false);
-            PerformLayout();
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ClientSize = new System.Drawing.Size(830, 610);
+            this.Controls.Add(Computer_board);
+            this.Controls.Add(this.Lable1);
+            this.Controls.Add(this.Cambia_tabella);
+            this.Controls.Add(User_board);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.Name = "Table";
+            this.Text = "Form1";
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         #endregion
         private Button Cambia_tabella;
         private Label Lable1;
-        public Panel panel1;
-        public Panel Playing_board;
+        public static Panel Computer_board;
+        public static Panel User_board;
     }
 }

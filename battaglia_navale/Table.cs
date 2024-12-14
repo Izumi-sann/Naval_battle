@@ -1,8 +1,12 @@
+using System.Threading;
+
 namespace battaglia_navale
 {
     public partial class Table : Form
     {
-        public static Button[,] matrice_tabella { get; set; }
+
+        public static Button[,] user_board_matrix { get; set; }
+        public static Button[,] computer_board_matrix { get; set; }
         public static int table_dimension { get; set; }
         private Menu menu_form;
 
