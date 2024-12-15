@@ -42,8 +42,6 @@ namespace battaglia_navale
             //MessageBox.Show($"{Table.computer_board_matrix.GetLength(1)} | {Table.table_dimension}");
 
             Cursor = Cursors.Default;
-            MessageBox.Show($"Controlli rimanenti nel user: {Table.User_board.Controls.Count}");
-            MessageBox.Show($"Controlli rimanenti nel computer: {Table.Computer_board.Controls.Count}");
 
             //close the form
             Close();
@@ -183,9 +181,6 @@ namespace battaglia_navale
 
             return false;
         }
-
-
-
 
     }
 }

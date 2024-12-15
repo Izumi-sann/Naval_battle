@@ -84,8 +84,7 @@
               "RelativeToolTip": "battaglia_navale\\Table.Designer.cs",
               "ViewState": "AgIAAEEAAAAAAAAAAAAwwGYAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-15T14:00:59.646Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-15T14:00:59.646Z"
             },
             {
               "$type": "Document",
@@ -93,9 +92,9 @@
               "Title": "Menu.cs",
               "DocumentMoniker": "C:\\Users\\gamba\\Desktop\\Naval_battle\\battaglia_navale\\Menu.cs",
               "RelativeDocumentMoniker": "battaglia_navale\\Menu.cs",
-              "ToolTip": "C:\\Users\\gamba\\Desktop\\Naval_battle\\battaglia_navale\\Menu.cs",
-              "RelativeToolTip": "battaglia_navale\\Menu.cs",
-              "ViewState": "AgIAAKAAAAAAAAAAAAAAwKYAAAAgAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\gamba\\Desktop\\Naval_battle\\battaglia_navale\\Menu.cs*",
+              "RelativeToolTip": "battaglia_navale\\Menu.cs*",
+              "ViewState": "AgIAAFUAAAAAAAAAAAAkwCMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-08T17:40:58.552Z",
               "EditorCaption": ""
@@ -120,8 +119,7 @@
               "ToolTip": "C:\\Users\\gamba\\Desktop\\Naval_battle\\battaglia_navale\\Table.cs [Design]",
               "RelativeToolTip": "battaglia_navale\\Table.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-08T17:40:58.545Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2024-12-08T17:40:58.545Z"
             }
           ]
         }
