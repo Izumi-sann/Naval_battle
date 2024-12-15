@@ -8,19 +8,19 @@
     "net6.0-windows7.0": []
   },
   "packageFolders": {
-    "C:\\Users\\ALESSANDROGAMBA\\.nuget\\packages\\": {}
+    "C:\\Users\\gamba\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ALESSANDROGAMBA\\Desktop\\Naval_battle\\battaglia_navale\\battaglia_navale.csproj",
+      "projectUniqueName": "C:\\Users\\gamba\\Desktop\\Naval_battle\\battaglia_navale\\battaglia_navale.csproj",
       "projectName": "battaglia_navale",
-      "projectPath": "C:\\Users\\ALESSANDROGAMBA\\Desktop\\Naval_battle\\battaglia_navale\\battaglia_navale.csproj",
-      "packagesPath": "C:\\Users\\ALESSANDROGAMBA\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ALESSANDROGAMBA\\Desktop\\Naval_battle\\battaglia_navale\\obj\\",
+      "projectPath": "C:\\Users\\gamba\\Desktop\\Naval_battle\\battaglia_navale\\battaglia_navale.csproj",
+      "packagesPath": "C:\\Users\\gamba\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\gamba\\Desktop\\Naval_battle\\battaglia_navale\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\ALESSANDROGAMBA\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\gamba\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -40,6 +40,11 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -64,7 +69,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.404\\RuntimeIdentifierGraph.json"
       }
     }
   }

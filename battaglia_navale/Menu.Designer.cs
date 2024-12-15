@@ -51,7 +51,7 @@
             this.Width_input.Size = new System.Drawing.Size(87, 27);
             this.Width_input.TabIndex = 0;
             this.Width_input.Value = new decimal(new int[] {
-            10,
+            7,
             0,
             0,
             0});

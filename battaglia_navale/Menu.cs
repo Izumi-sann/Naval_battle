@@ -20,23 +20,28 @@ namespace battaglia_navale
 
         public async void DefinisciTabella(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
+
+            Table.Computer_board.Invoke((MethodInvoker)delegate {
+                Table.Computer_board.Location = new Point(Table.User_board.Location.X + Convert.ToInt32(Width_input.Value) * 68 +40, 12);
+            });
+
             Thread user = new Thread(Define_UserTable);
             Thread computer = new Thread(Define_ComputerTable);
 
             //define user and computer table
             user.Start();
             computer.Start();
-            await Task.Delay(2000);
+            MessageBox.Show("Tabella creata con successo", "Successo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             user.Join();
             computer.Join();
 
-            Table.Computer_board.Invoke((MethodInvoker)delegate {
-                Table.Computer_board.Location = new Point(Table.User_board., 12);
-            });
-
-
+            MessageBox.Show($"{Convert.ToInt32(Width_input.Value)} | {Table.table_dimension}");
             Table.table_dimension = Convert.ToInt32(Width_input.Value);
+            MessageBox.Show($"{Table.computer_board_matrix.GetLength(1)} | {Table.table_dimension}");
+
+            Cursor = Cursors.Default;
 
             //close the form
             Close();
@@ -46,20 +51,20 @@ namespace battaglia_navale
         {
             int table_width = Convert.ToInt32(Width_input.Value);
             int table_height = table_width;
+            
 
             //verify whether the new table is smaller than the previous one, and delete the extra buttons
-            VerifyTableDimension(table_width, Table.User_board, Table.user_board_matrix);
+            if (VerifyTableDimension(table_width, Table.User_board, Table.user_board_matrix))
+                return;
 
             //define the table 
             Table.user_board_matrix = new Button[table_width, table_height];
-
-            Button[,] matrice_tabella = Table.user_board_matrix;//una copia di user_board_matrix
-            Panel Playing_board = Table.User_board;
+            Button[,] matrice_tabella = Table.user_board_matrix;
 
             //create the buttons matrix
             for (int row = 0; row < table_width; row++)
                 for (int column = 0; column < table_height; column++)
-                    DefineButton(matrice_tabella, Playing_board, row, column);
+                    DefineButton(matrice_tabella, Table.User_board, row, column);
         }
         
         private void Define_ComputerTable()
@@ -68,12 +73,13 @@ namespace battaglia_navale
             int table_height = table_width;
 
             //verify whether the new table is smaller than the previous one, and delete the extra buttons
-            VerifyTableDimension(table_width, Table.Computer_board, Table.computer_board_matrix);
+            if (VerifyTableDimension(table_width, Table.Computer_board, Table.computer_board_matrix))
+                return;
 
             //define the table 
             Table.computer_board_matrix = new Button[table_width, table_height];
-            Button[,] matrice_tabella = Table.computer_board_matrix;//una copia locale di user_board_matrix
-
+            Button[,] matrice_tabella = Table.computer_board_matrix;
+            
             //create the buttons matrix
             for (int row = 0; row < table_width; row++)
                 for (int column = 0; column < table_height; column++)
@@ -86,15 +92,11 @@ namespace battaglia_navale
 
             // Utilizza Invoke per assegnare il Parent del bottone
             if (Playing_board.InvokeRequired)
-            {
                 Playing_board.Invoke((MethodInvoker)delegate {
                     create_button();
                 });
-            }
             else
-            {
-                tile.Parent = Playing_board;
-            }
+                create_button();
 
 
             void create_button() {
@@ -117,9 +119,10 @@ namespace battaglia_navale
             }
         }
 
-        private static void VerifyTableDimension(int table_width, Panel board, Button[,] board_matrix)
+        private static bool VerifyTableDimension(int table_width, Panel board, Button[,] board_matrix)
         {
-            if (table_width < Table.table_dimension)
+
+            if (table_width < Table.table_dimension) { 
                 for (int x = Table.table_dimension - 1; x >= table_width; x--)
                     for (int y = Table.table_dimension - 1; y >= 0; y--)
                     {
@@ -130,6 +133,13 @@ namespace battaglia_navale
                             board_matrix[y, x].Dispose();
                         });
                     }
+
+                board_matrix = new Button[table_width, table_width];
+
+                return true;
+            }
+
+            return false;
         }
 
 

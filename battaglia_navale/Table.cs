@@ -28,7 +28,7 @@ namespace battaglia_navale
         {
             menu_form = new Menu();
             menu_form.StartPosition = FormStartPosition.Manual;
-            menu_form.Location = new Point(Location.X+Size.Width/2, Location.Y+Size.Height/2);
+            menu_form.Location = new Point(Location.X+Width/2- menu_form.Width/2, Location.Y+Size.Height/ 2 - menu_form.Height / 2);
             Show();
             menu_form.ShowDialog();
         }

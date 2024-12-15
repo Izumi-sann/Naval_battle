@@ -75,19 +75,20 @@
             // 
             // Table
             // 
+            this.Name = "Table";
+            this.Text = "Form1";
+            this.AutoSize = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(830, 610);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = true;
+            this.MinimizeBox = true;
             this.Controls.Add(Computer_board);
             this.Controls.Add(this.Lable1);
             this.Controls.Add(this.Cambia_tabella);
             this.Controls.Add(User_board);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.MaximizeBox = false;
-            this.Name = "Table";
-            this.Text = "Form1";
             this.ResumeLayout(false);
             this.PerformLayout();
 
