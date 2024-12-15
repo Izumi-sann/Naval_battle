@@ -7,6 +7,10 @@
       "RelativeMoniker": "D:0:0:{B46C5CF5-A6E5-44BF-80AA-D54FD2DE6017}|battaglia_navale\\battaglia_navale.csproj|solutionrelative:battaglia_navale\\menu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{B46C5CF5-A6E5-44BF-80AA-D54FD2DE6017}|battaglia_navale\\battaglia_navale.csproj|C:\\Users\\gamba\\Desktop\\Naval_battle\\battaglia_navale\\table.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{B46C5CF5-A6E5-44BF-80AA-D54FD2DE6017}|battaglia_navale\\battaglia_navale.csproj|solutionrelative:battaglia_navale\\table.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{B46C5CF5-A6E5-44BF-80AA-D54FD2DE6017}|battaglia_navale\\battaglia_navale.csproj|c:\\users\\gamba\\desktop\\naval_battle\\battaglia_navale\\table.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B46C5CF5-A6E5-44BF-80AA-D54FD2DE6017}|battaglia_navale\\battaglia_navale.csproj|solutionrelative:battaglia_navale\\table.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -17,10 +21,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{B46C5CF5-A6E5-44BF-80AA-D54FD2DE6017}|battaglia_navale\\battaglia_navale.csproj|c:\\users\\gamba\\desktop\\naval_battle\\battaglia_navale\\table.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B46C5CF5-A6E5-44BF-80AA-D54FD2DE6017}|battaglia_navale\\battaglia_navale.csproj|solutionrelative:battaglia_navale\\table.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B46C5CF5-A6E5-44BF-80AA-D54FD2DE6017}|battaglia_navale\\battaglia_navale.csproj|C:\\Users\\gamba\\Desktop\\Naval_battle\\battaglia_navale\\table.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{B46C5CF5-A6E5-44BF-80AA-D54FD2DE6017}|battaglia_navale\\battaglia_navale.csproj|solutionrelative:battaglia_navale\\table.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B46C5CF5-A6E5-44BF-80AA-D54FD2DE6017}|battaglia_navale\\battaglia_navale.csproj|C:\\Users\\gamba\\Desktop\\Naval_battle\\battaglia_navale\\menu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
@@ -34,11 +34,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Table.cs",
               "DocumentMoniker": "C:\\Users\\gamba\\Desktop\\Naval_battle\\battaglia_navale\\Table.cs",
               "RelativeDocumentMoniker": "battaglia_navale\\Table.cs",
@@ -64,7 +64,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "Menu.Designer.cs",
               "DocumentMoniker": "C:\\Users\\gamba\\Desktop\\Naval_battle\\battaglia_navale\\Menu.Designer.cs",
               "RelativeDocumentMoniker": "battaglia_navale\\Menu.Designer.cs",
@@ -72,12 +72,11 @@
               "RelativeToolTip": "battaglia_navale\\Menu.Designer.cs",
               "ViewState": "AgIAABsAAAAAAAAAAAAswDUAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-15T14:19:46.451Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-15T14:19:46.451Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "Table.Designer.cs",
               "DocumentMoniker": "C:\\Users\\gamba\\Desktop\\Naval_battle\\battaglia_navale\\Table.Designer.cs",
               "RelativeDocumentMoniker": "battaglia_navale\\Table.Designer.cs",
@@ -90,25 +89,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Table.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\gamba\\Desktop\\Naval_battle\\battaglia_navale\\Table.cs",
-              "RelativeDocumentMoniker": "battaglia_navale\\Table.cs",
-              "ToolTip": "C:\\Users\\gamba\\Desktop\\Naval_battle\\battaglia_navale\\Table.cs [Design]",
-              "RelativeToolTip": "battaglia_navale\\Table.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-08T17:40:58.545Z",
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Menu.cs",
               "DocumentMoniker": "C:\\Users\\gamba\\Desktop\\Naval_battle\\battaglia_navale\\Menu.cs",
               "RelativeDocumentMoniker": "battaglia_navale\\Menu.cs",
               "ToolTip": "C:\\Users\\gamba\\Desktop\\Naval_battle\\battaglia_navale\\Menu.cs",
               "RelativeToolTip": "battaglia_navale\\Menu.cs",
-              "ViewState": "AgIAAEMAAAAAAAAAAAAowE8AAABGAAAAAAAAAA==",
+              "ViewState": "AgIAAGEAAAAAAAAAAAAqwJwAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-08T17:40:58.552Z",
               "EditorCaption": ""
@@ -123,6 +110,18 @@
               "RelativeToolTip": "battaglia_navale\\Menu.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-08T17:40:58.576Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Table.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\gamba\\Desktop\\Naval_battle\\battaglia_navale\\Table.cs",
+              "RelativeDocumentMoniker": "battaglia_navale\\Table.cs",
+              "ToolTip": "C:\\Users\\gamba\\Desktop\\Naval_battle\\battaglia_navale\\Table.cs [Design]",
+              "RelativeToolTip": "battaglia_navale\\Table.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-08T17:40:58.545Z",
+              "EditorCaption": " [Design]"
             }
           ]
         }

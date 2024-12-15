@@ -37,11 +37,13 @@ namespace battaglia_navale
             user.Join();
             computer.Join();
 
-            MessageBox.Show($"{Convert.ToInt32(Width_input.Value)} | {Table.table_dimension}");
+            //MessageBox.Show($"{Convert.ToInt32(Width_input.Value)} | {Table.table_dimension}");
             Table.table_dimension = Convert.ToInt32(Width_input.Value);
-            MessageBox.Show($"{Table.computer_board_matrix.GetLength(1)} | {Table.table_dimension}");
+            //MessageBox.Show($"{Table.computer_board_matrix.GetLength(1)} | {Table.table_dimension}");
 
             Cursor = Cursors.Default;
+            MessageBox.Show($"Controlli rimanenti nel user: {Table.User_board.Controls.Count}");
+            MessageBox.Show($"Controlli rimanenti nel computer: {Table.Computer_board.Controls.Count}");
 
             //close the form
             Close();
@@ -51,20 +53,27 @@ namespace battaglia_navale
         {
             int table_width = Convert.ToInt32(Width_input.Value);
             int table_height = table_width;
-            
 
-            //verify whether the new table is smaller than the previous one, and delete the extra buttons
+
             if (VerifyTableDimension(table_width, Table.User_board, Table.user_board_matrix))
+            {
+                Button[,] matrice_resized = ResizeMatrix(Table.user_board_matrix, table_width, table_height);
+                Table.user_board_matrix = matrice_resized;
                 return;
+            }
 
             //define the table 
-            Table.user_board_matrix = new Button[table_width, table_height];
-            Button[,] matrice_tabella = Table.user_board_matrix;
+            Button[,] matrice_tabella = ResizeMatrix(Table.user_board_matrix, table_width, table_height);
 
             //create the buttons matrix
-            for (int row = 0; row < table_width; row++)
-                for (int column = 0; column < table_height; column++)
-                    DefineButton(matrice_tabella, Table.User_board, row, column);
+            for (int column = 0; column < table_width; column++)
+                for (int row = 0; row < table_height; row++)
+                    Table.User_board.Invoke((MethodInvoker)delegate
+                    {
+                        DefineButton(matrice_tabella, Table.User_board, column, row);
+                    });
+
+            Table.user_board_matrix = matrice_tabella;
         }
         
         private void Define_ComputerTable()
@@ -72,18 +81,46 @@ namespace battaglia_navale
             int table_width = Convert.ToInt32(Width_input.Value);
             int table_height = table_width;
 
+
             //verify whether the new table is smaller than the previous one, and delete the extra buttons
-            if (VerifyTableDimension(table_width, Table.Computer_board, Table.computer_board_matrix))
+            if(VerifyTableDimension(table_width, Table.Computer_board, Table.computer_board_matrix)) {
+                Table.computer_board_matrix = ResizeMatrix(Table.computer_board_matrix, table_width, table_height);
                 return;
+            }
 
             //define the table 
-            Table.computer_board_matrix = new Button[table_width, table_height];
-            Button[,] matrice_tabella = Table.computer_board_matrix;
+            Button[,] matrice_tabella = ResizeMatrix(Table.computer_board_matrix, table_width, table_height);
             
             //create the buttons matrix
-            for (int row = 0; row < table_width; row++)
-                for (int column = 0; column < table_height; column++)
-                    DefineButton(matrice_tabella, Table.Computer_board, row, column);
+            for (int column = 0; column < table_width; column++)
+                for (int row = 0; row < table_height; row++)
+                    Table.Computer_board.Invoke((MethodInvoker)delegate
+                    {
+                            DefineButton(matrice_tabella, Table.Computer_board, column, row);
+                    });
+
+            Table.computer_board_matrix = matrice_tabella;
+        }
+
+        private static Button[,] ResizeMatrix(Button[,] oldMatrix, int newRows, int newCols)
+        {
+            if (oldMatrix == null) return new Button[newRows, newCols];
+            int oldRows = oldMatrix.GetLength(0);
+            int oldCols = oldMatrix.GetLength(1);
+
+            // Crea una nuova matrice con le nuove dimensioni
+            Button[,] newMatrix = new Button[newRows, newCols];
+
+            // Copia i valori dalla vecchia matrice alla nuova matrice
+            for (int i = 0; i < Math.Min(oldRows, newRows); i++) // Evita fuoriuscite di indice
+            {
+                for (int j = 0; j < Math.Min(oldCols, newCols); j++)
+                {
+                    newMatrix[i, j] = oldMatrix[i, j];
+                }
+            }
+
+            return newMatrix;
         }
 
         private static void DefineButton(Button[,] matrice_tabella, Panel Playing_board, int row, int column)
@@ -91,12 +128,10 @@ namespace battaglia_navale
             Button tile = new Button();
 
             // Utilizza Invoke per assegnare il Parent del bottone
-            if (Playing_board.InvokeRequired)
+            if (matrice_tabella[column, row] == null)
                 Playing_board.Invoke((MethodInvoker)delegate {
                     create_button();
                 });
-            else
-                create_button();
 
 
             void create_button() {
@@ -114,27 +149,34 @@ namespace battaglia_navale
 
                 // Events
                 tile.Click += new EventHandler(Table.HitTile);
-                matrice_tabella[row, column] = tile;
-            
+                matrice_tabella[column, row] = tile;            
             }
         }
 
         private static bool VerifyTableDimension(int table_width, Panel board, Button[,] board_matrix)
         {
 
-            if (table_width < Table.table_dimension) { 
+            if (table_width < Table.table_dimension) {
                 for (int x = Table.table_dimension - 1; x >= table_width; x--)
-                    for (int y = Table.table_dimension - 1; y >= 0; y--)
+                {
+                    for (int y = x; y >= 0; y--)
                     {
-                        Table.Computer_board.Invoke((MethodInvoker)delegate {
-                            board.Controls.Remove(board_matrix[x, y]);
-                            board.Controls.Remove(board_matrix[y, x]);
-                            board_matrix[x, y].Dispose();
-                            board_matrix[y, x].Dispose();
+                        Table.Computer_board.Invoke((MethodInvoker)delegate
+                        {
+                                board.Controls.Remove(board_matrix[x, y]);
+                                board.Controls.Remove(board_matrix[y, x]);
+                                
+                                board_matrix[y, x].Dispose();
+                                board_matrix[x, y].Dispose();
+                                
+                                board_matrix[x, y] = null;
+                                board_matrix[y, x] = null;
                         });
                     }
+                }
 
-                board_matrix = new Button[table_width, table_width];
+
+                //board_matrix = new Button[table_width, table_width];
 
                 return true;
             }
