@@ -4,6 +4,9 @@
     <Compile Update="Menu.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Ship_tile.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Update="Table.cs">
       <SubType>Form</SubType>
     </Compile>
