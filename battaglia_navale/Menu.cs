@@ -138,6 +138,7 @@ namespace battaglia_navale
                 tile.Left = column * 70;
                 tile.Width = 68;
                 tile.Height = 50;
+                tile.Tag = $"{row}|{column}";
                 tile.Text = $"{row + 1} - {column + 1}";
 
                 // Apparence
@@ -181,7 +182,6 @@ namespace battaglia_navale
 
             return false;
         }
-
     }
 }
 

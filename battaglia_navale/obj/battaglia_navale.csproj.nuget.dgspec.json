@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\gamba\\Desktop\\Naval_battle\\battaglia_navale\\battaglia_navale.csproj": {}
+    "C:\\Users\\slega\\Desktop\\C#\\esercizi_scuola\\esercizi_lezione\\Lab\\Naval_battle\\battaglia_navale\\battaglia_navale.csproj": {}
   },
   "projects": {
-    "C:\\Users\\gamba\\Desktop\\Naval_battle\\battaglia_navale\\battaglia_navale.csproj": {
+    "C:\\Users\\slega\\Desktop\\C#\\esercizi_scuola\\esercizi_lezione\\Lab\\Naval_battle\\battaglia_navale\\battaglia_navale.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\gamba\\Desktop\\Naval_battle\\battaglia_navale\\battaglia_navale.csproj",
+        "projectUniqueName": "C:\\Users\\slega\\Desktop\\C#\\esercizi_scuola\\esercizi_lezione\\Lab\\Naval_battle\\battaglia_navale\\battaglia_navale.csproj",
         "projectName": "battaglia_navale",
-        "projectPath": "C:\\Users\\gamba\\Desktop\\Naval_battle\\battaglia_navale\\battaglia_navale.csproj",
-        "packagesPath": "C:\\Users\\gamba\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\gamba\\Desktop\\Naval_battle\\battaglia_navale\\obj\\",
+        "projectPath": "C:\\Users\\slega\\Desktop\\C#\\esercizi_scuola\\esercizi_lezione\\Lab\\Naval_battle\\battaglia_navale\\battaglia_navale.csproj",
+        "packagesPath": "C:\\Users\\slega\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\slega\\Desktop\\C#\\esercizi_scuola\\esercizi_lezione\\Lab\\Naval_battle\\battaglia_navale\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\gamba\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\slega\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -55,6 +55,24 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[6.0.36, 6.0.36]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Host.win-x64",
+              "version": "[6.0.36, 6.0.36]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[6.0.36, 6.0.36]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[6.0.36, 6.0.36]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"

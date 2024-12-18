@@ -9,25 +9,18 @@ namespace battaglia_navale
 {
     internal class Ship_tile : Button
     {
-        public Point position;
-        public bool isPlaced;
+        public int[] position;
         public bool isDestroyed;
 
         public Ship_tile()
         {
-            this.isPlaced = false;
             this.isDestroyed = false;
             this.BackColor = System.Drawing.Color.DarkGray;
         }
 
         public void SetPosition(int[] position)
         {
-            this.position = new Point(position[0], position[1]);
-        }
-
-        public void SetPlaced(bool isPlaced)
-        {
-            this.isPlaced = isPlaced;
+            this.position = position;
         }
 
         public void SetDestroyed(bool isDestroyed)
@@ -35,5 +28,6 @@ namespace battaglia_navale
             this.isDestroyed = isDestroyed;
             this.BackColor = System.Drawing.Color.Red;
         }
+
     }
 }
