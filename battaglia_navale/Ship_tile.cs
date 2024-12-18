@@ -9,18 +9,17 @@ namespace battaglia_navale
 {
     internal class Ship_tile : Button
     {
-        public int[] position;
-        public bool isDestroyed;
+        private int[] position_matrix { get; set; } public int[] Position { get => position_matrix; } // posizione della casella
+        private bool isDestroyed { get; set; } public bool IsDestroyed { get => isDestroyed; } // casella distrutta
 
-        public Ship_tile()
+
+        public Ship_tile(string name, int[] position)
         {
             this.isDestroyed = false;
+            this.position_matrix = position;
             this.BackColor = System.Drawing.Color.DarkGray;
-        }
-
-        public void SetPosition(int[] position)
-        {
-            this.position = position;
+            this.Text = name;
+            InitializeComponent(position);
         }
 
         public void SetDestroyed(bool isDestroyed)
@@ -29,5 +28,14 @@ namespace battaglia_navale
             this.BackColor = System.Drawing.Color.Red;
         }
 
+        private void InitializeComponent(int[] position)
+        {
+            this.Location = Table.user_board_matrix[position[0], position[1]].Location;//set location in the panel
+
+            Table.User_board.Controls.Remove(Table.user_board_matrix[position[0], position[1]]); //remove the old button
+
+            Table.user_board_matrix[position[0], position[1]] = this;//add the new button
+            Table.User_board.Controls.Add(this);
+        }
     }
 }

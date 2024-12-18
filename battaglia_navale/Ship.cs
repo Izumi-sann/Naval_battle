@@ -14,7 +14,7 @@ namespace battaglia_navale
         
         public bool isDestroyed; //tutte le tiles della barca sono distrutte
         public bool IsVertical; //true: vertical; false:horizontal
-        public List<Ship_tile> ship_tiles; //le tiles della barca
+        public Ship_tile[] ship_tiles; //le tiles della barca
 
         public Ship(bool IsVertical, int lenght, int[] coordinates ,string name) {
             if (!VerificaSpazio(Table.user_board_matrix, lenght, IsVertical, coordinates))
@@ -25,7 +25,7 @@ namespace battaglia_navale
             this.isDestroyed = false;
             this.IsVertical = IsVertical;
             this.coordinates = coordinates;
-            this.ship_tiles = new List<Ship_tile>();
+            this.ship_tiles = SetTiles(name, lenght, coordinates, IsVertical);
         }
 
 
@@ -35,10 +35,22 @@ namespace battaglia_navale
 
             //is horizontal
             return coordinates[0] + lenght -1 < user_board.GetLength(1) ? true : false;
-
-
         }
 
         //funzione che crea le caselle della nave
+        private Ship_tile[] SetTiles(string name, int lenght, int[] coordinates, bool IsVertical) {
+            Ship_tile[] ship_tiles = new Ship_tile[lenght];
+
+            if (IsVertical) { 
+                for (int i = 0; i < lenght; i++)
+                    ship_tiles[i] = new Ship_tile(name, new int[]{coordinates[0], coordinates[1]+i});
+            }
+            else//horizontal
+                for (int i = 0; i < lenght; i++)
+                    ship_tiles[i] = new Ship_tile(name, new int[] { coordinates[0] + i, coordinates[1] });
+
+
+            return ship_tiles;
+        }
     }
 }
