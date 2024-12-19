@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -20,6 +21,25 @@ namespace battaglia_navale
             this.BackColor = System.Drawing.Color.DarkGray;
             this.Text = name;
             InitializeComponent(position);
+        }
+
+        private void CreateButton() { //da fare, pensare anche allo spawn automatico
+            this.Parent = Table.User_board;
+            tile.Top = row * 52;
+            tile.Left = column * 70;
+            tile.Width = 68;
+            tile.Height = 50;
+            tile.Tag = $"{column}|{row}";
+            tile.Text = $"{column + 1} - {row + 1}";
+
+            // Apparence
+            tile.FlatStyle = FlatStyle.Flat;
+            tile.FlatAppearance.BorderSize = 0;
+            tile.BackColor = Color.LightBlue;
+
+            // Events
+            tile.Click += new EventHandler(Table.Board_buttonClick);
+            matrice_tabella[column, row] = tile;
         }
 
         public void SetDestroyed(bool isDestroyed)

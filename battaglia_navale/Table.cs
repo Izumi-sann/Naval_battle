@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using System.Threading;
 
 namespace battaglia_navale
@@ -9,6 +10,8 @@ namespace battaglia_navale
         public static int table_dimension { get; set; }
         private Menu menu_form;
 
+        public static string game_phase = "preparation"; //or battle
+
         public Table()
         {
             InitializeComponent();
@@ -18,10 +21,6 @@ namespace battaglia_navale
         private void Form1_Load(object sender, EventArgs e) { }
 
         //metodi 
-        public static void HitTile(object sender, EventArgs e) {
-            Button sender_button = (Button)sender;
-            sender_button.BackColor = Color.Red;
-        }
 
         private void Modifica_tabella_Click(object sender, EventArgs e)
         {
@@ -32,15 +31,31 @@ namespace battaglia_navale
             menu_form.ShowDialog();
         }
         
-        private void CreateShip(object sender, EventArgs e) {
+        public static void Board_buttonClick(object sender, EventArgs e) { 
+            if (game_phase == "preparation")
+                CreateShip(sender, e);
+            else
+                HitTile(sender, e);
+        }
+
+        public static void HitTile(object sender, EventArgs e) {
+            Button sender_button = (Button)sender;
+            sender_button.BackColor = Color.Red;
+        }
+        
+        public static void CreateShip(object sender, EventArgs e) {
             try { 
                 string[] tag = ((Button)sender).Tag.ToString().Split('|');
-                string text = ((Button)sender).Text;
+                string ship_name = Ship_input.SelectedItem.ToString();
 
                 int[] coordinates = new int[] { Convert.ToInt32(tag[0]), Convert.ToInt32(tag[1]) };
-                int lenght = GetLenght(text); //mappa il nome con la lunghezza della nave
+                int lenght = GetLenght(ship_name); //mappa il nome con la lunghezza della nave
 
-                Ship new_ship = new Ship(true, lenght, coordinates, text);
+                bool IsVertical = Button_vertical.Checked;
+                Ship new_ship = new Ship(IsVertical, lenght, coordinates, ship_name);
+            }
+            catch (System.NullReferenceException exce) {
+                MessageBox.Show(exce.Message, "selection error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (ArgumentException exce) {
                 MessageBox.Show(exce.Message, "position error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -51,17 +66,17 @@ namespace battaglia_navale
 
         }
 
-        private int GetLenght(string name) { 
+        private static int GetLenght(string name) { 
             switch (name.ToLower()){
-                case "po": //portaerei
+                case "portaerei(5)": //portaerei
                     return 5; 
-                case "co": //corazzata
+                case "corazzata(4)": //corazzata
                     return 4;
-                case "in": //incrociatore
+                case "incrociatore(3)": //incrociatore
                     return 3;
-                case "ca": //cacciatorpediniere
+                case "cacciatorpediniere(3)": //cacciatorpediniere
                     return 3;
-                case "so": //sottomarino
+                case "sottomarino(2)": //sottomarino
                     return 2;
                 default:
                     throw new Exception("not recognized ship");

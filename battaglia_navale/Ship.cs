@@ -29,7 +29,7 @@ namespace battaglia_navale
         }
 
 
-        private bool VerificaSpazio(Button[,] user_board, int lenght, bool IsVertical, int[] coordinates) {
+        private bool VerificaSpazio(Button[,] user_board, int lenght, bool IsVertical, int[] coordinates) {//verifica intersezione con altre navi
             if (IsVertical)
                 return coordinates[1] + lenght - 1 < user_board.GetLength(1) ? true : false;
 

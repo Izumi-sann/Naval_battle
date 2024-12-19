@@ -138,8 +138,8 @@ namespace battaglia_navale
                 tile.Left = column * 70;
                 tile.Width = 68;
                 tile.Height = 50;
-                tile.Tag = $"{row}|{column}";
-                tile.Text = $"{row + 1} - {column + 1}";
+                tile.Tag = $"{column}|{row}";
+                tile.Text = $"{column + 1} - {row + 1}";
 
                 // Apparence
                 tile.FlatStyle = FlatStyle.Flat;
@@ -147,7 +147,7 @@ namespace battaglia_navale
                 tile.BackColor = Color.LightBlue;
 
                 // Events
-                tile.Click += new EventHandler(Table.HitTile);
+                tile.Click += new EventHandler(Table.Board_buttonClick);
                 matrice_tabella[column, row] = tile;            
             }
         }
