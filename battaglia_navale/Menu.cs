@@ -18,7 +18,7 @@ namespace battaglia_navale
             InitializeComponent();
         }
 
-        public async void DefinisciTabella(object sender, EventArgs e)
+        public void DefinisciTabella(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
 
@@ -139,7 +139,7 @@ namespace battaglia_navale
                 tile.Width = 68;
                 tile.Height = 50;
                 tile.Tag = $"{column}|{row}";
-                tile.Text = $"{column + 1} - {row + 1}";
+                tile.Text = $"";
 
                 // Apparence
                 tile.FlatStyle = FlatStyle.Flat;

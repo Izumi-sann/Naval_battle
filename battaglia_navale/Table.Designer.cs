@@ -73,7 +73,7 @@
             Computer_board.AutoSize = true;
             Computer_board.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             Computer_board.BorderStyle = BorderStyle.Fixed3D;
-            Computer_board.Location = new Point(343, 12);
+            Computer_board.Location = new Point(250, 11);
             Computer_board.Name = "Computer_board";
             Computer_board.Size = new Size(4, 4);
             Computer_board.TabIndex = 1;
