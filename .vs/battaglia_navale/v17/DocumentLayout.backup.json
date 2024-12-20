@@ -3,32 +3,36 @@
   "WorkspaceRootPath": "C:\\Users\\slega\\Desktop\\C#\\esercizi_scuola\\esercizi_lezione\\Lab\\Naval_battle\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B46C5CF5-A6E5-44BF-80AA-D54FD2DE6017}|battaglia_navale\\battaglia_navale.csproj|c:\\users\\slega\\desktop\\c#\\esercizi_scuola\\esercizi_lezione\\lab\\naval_battle\\battaglia_navale\\menu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B46C5CF5-A6E5-44BF-80AA-D54FD2DE6017}|battaglia_navale\\battaglia_navale.csproj|solutionrelative:battaglia_navale\\menu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B46C5CF5-A6E5-44BF-80AA-D54FD2DE6017}|battaglia_navale\\battaglia_navale.csproj|c:\\users\\slega\\desktop\\c#\\esercizi_scuola\\esercizi_lezione\\lab\\naval_battle\\battaglia_navale\\table.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B46C5CF5-A6E5-44BF-80AA-D54FD2DE6017}|battaglia_navale\\battaglia_navale.csproj|solutionrelative:battaglia_navale\\table.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B46C5CF5-A6E5-44BF-80AA-D54FD2DE6017}|battaglia_navale\\battaglia_navale.csproj|c:\\users\\slega\\desktop\\c#\\esercizi_scuola\\esercizi_lezione\\lab\\naval_battle\\battaglia_navale\\table.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B46C5CF5-A6E5-44BF-80AA-D54FD2DE6017}|battaglia_navale\\battaglia_navale.csproj|solutionrelative:battaglia_navale\\table.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B46C5CF5-A6E5-44BF-80AA-D54FD2DE6017}|battaglia_navale\\battaglia_navale.csproj|c:\\users\\slega\\desktop\\c#\\esercizi_scuola\\esercizi_lezione\\lab\\naval_battle\\battaglia_navale\\table.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B46C5CF5-A6E5-44BF-80AA-D54FD2DE6017}|battaglia_navale\\battaglia_navale.csproj|solutionrelative:battaglia_navale\\table.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B46C5CF5-A6E5-44BF-80AA-D54FD2DE6017}|battaglia_navale\\battaglia_navale.csproj|C:\\Users\\slega\\Desktop\\C#\\esercizi_scuola\\esercizi_lezione\\Lab\\Naval_battle\\battaglia_navale\\menu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{B46C5CF5-A6E5-44BF-80AA-D54FD2DE6017}|battaglia_navale\\battaglia_navale.csproj|solutionrelative:battaglia_navale\\menu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B46C5CF5-A6E5-44BF-80AA-D54FD2DE6017}|battaglia_navale\\battaglia_navale.csproj|c:\\users\\slega\\desktop\\c#\\esercizi_scuola\\esercizi_lezione\\lab\\naval_battle\\battaglia_navale\\ship_tile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B46C5CF5-A6E5-44BF-80AA-D54FD2DE6017}|battaglia_navale\\battaglia_navale.csproj|solutionrelative:battaglia_navale\\ship_tile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B46C5CF5-A6E5-44BF-80AA-D54FD2DE6017}|battaglia_navale\\battaglia_navale.csproj|c:\\users\\slega\\desktop\\c#\\esercizi_scuola\\esercizi_lezione\\lab\\naval_battle\\battaglia_navale\\table.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{B46C5CF5-A6E5-44BF-80AA-D54FD2DE6017}|battaglia_navale\\battaglia_navale.csproj|solutionrelative:battaglia_navale\\table.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B46C5CF5-A6E5-44BF-80AA-D54FD2DE6017}|battaglia_navale\\battaglia_navale.csproj|c:\\users\\slega\\desktop\\c#\\esercizi_scuola\\esercizi_lezione\\lab\\naval_battle\\battaglia_navale\\menu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B46C5CF5-A6E5-44BF-80AA-D54FD2DE6017}|battaglia_navale\\battaglia_navale.csproj|solutionrelative:battaglia_navale\\menu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B46C5CF5-A6E5-44BF-80AA-D54FD2DE6017}|battaglia_navale\\battaglia_navale.csproj|c:\\users\\slega\\desktop\\c#\\esercizi_scuola\\esercizi_lezione\\lab\\naval_battle\\battaglia_navale\\ship.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B46C5CF5-A6E5-44BF-80AA-D54FD2DE6017}|battaglia_navale\\battaglia_navale.csproj|solutionrelative:battaglia_navale\\ship.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B46C5CF5-A6E5-44BF-80AA-D54FD2DE6017}|battaglia_navale\\battaglia_navale.csproj|C:\\Users\\slega\\Desktop\\C#\\esercizi_scuola\\esercizi_lezione\\Lab\\Naval_battle\\battaglia_navale\\table.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{B46C5CF5-A6E5-44BF-80AA-D54FD2DE6017}|battaglia_navale\\battaglia_navale.csproj|solutionrelative:battaglia_navale\\table.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{B46C5CF5-A6E5-44BF-80AA-D54FD2DE6017}|battaglia_navale\\battaglia_navale.csproj|c:\\users\\slega\\desktop\\c#\\esercizi_scuola\\esercizi_lezione\\lab\\naval_battle\\battaglia_navale\\ship_tile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B46C5CF5-A6E5-44BF-80AA-D54FD2DE6017}|battaglia_navale\\battaglia_navale.csproj|solutionrelative:battaglia_navale\\ship_tile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B46C5CF5-A6E5-44BF-80AA-D54FD2DE6017}|battaglia_navale\\battaglia_navale.csproj|C:\\Users\\slega\\Desktop\\C#\\esercizi_scuola\\esercizi_lezione\\Lab\\Naval_battle\\battaglia_navale\\menu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{B46C5CF5-A6E5-44BF-80AA-D54FD2DE6017}|battaglia_navale\\battaglia_navale.csproj|solutionrelative:battaglia_navale\\menu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{B46C5CF5-A6E5-44BF-80AA-D54FD2DE6017}|battaglia_navale\\battaglia_navale.csproj|c:\\users\\slega\\desktop\\c#\\esercizi_scuola\\esercizi_lezione\\lab\\naval_battle\\battaglia_navale\\menu.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B46C5CF5-A6E5-44BF-80AA-D54FD2DE6017}|battaglia_navale\\battaglia_navale.csproj|solutionrelative:battaglia_navale\\menu.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -38,17 +42,17 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 6,
               "Title": "Ship_tile.cs",
               "DocumentMoniker": "C:\\Users\\slega\\Desktop\\C#\\esercizi_scuola\\esercizi_lezione\\Lab\\Naval_battle\\battaglia_navale\\Ship_tile.cs",
               "RelativeDocumentMoniker": "battaglia_navale\\Ship_tile.cs",
               "ToolTip": "C:\\Users\\slega\\Desktop\\C#\\esercizi_scuola\\esercizi_lezione\\Lab\\Naval_battle\\battaglia_navale\\Ship_tile.cs",
               "RelativeToolTip": "battaglia_navale\\Ship_tile.cs",
-              "ViewState": "AgIAABcAAAAAAAAAAAAcwDYAAABsAAAAAAAAAA==",
+              "ViewState": "AgIAAAsAAAAAAAAAAAA1wC0AAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-16T22:14:42.903Z",
               "IsPinned": true,
@@ -56,13 +60,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "Ship.cs",
               "DocumentMoniker": "C:\\Users\\slega\\Desktop\\C#\\esercizi_scuola\\esercizi_lezione\\Lab\\Naval_battle\\battaglia_navale\\Ship.cs",
               "RelativeDocumentMoniker": "battaglia_navale\\Ship.cs",
               "ToolTip": "C:\\Users\\slega\\Desktop\\C#\\esercizi_scuola\\esercizi_lezione\\Lab\\Naval_battle\\battaglia_navale\\Ship.cs",
               "RelativeToolTip": "battaglia_navale\\Ship.cs",
-              "ViewState": "AgIAAAoAAAAAAAAAAAAiwDMAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACEAAACMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-16T22:59:56.776Z",
               "IsPinned": true,
@@ -70,13 +74,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 4,
               "Title": "Menu.cs",
               "DocumentMoniker": "C:\\Users\\slega\\Desktop\\C#\\esercizi_scuola\\esercizi_lezione\\Lab\\Naval_battle\\battaglia_navale\\Menu.cs",
               "RelativeDocumentMoniker": "battaglia_navale\\Menu.cs",
               "ToolTip": "C:\\Users\\slega\\Desktop\\C#\\esercizi_scuola\\esercizi_lezione\\Lab\\Naval_battle\\battaglia_navale\\Menu.cs",
               "RelativeToolTip": "battaglia_navale\\Menu.cs",
-              "ViewState": "AgIAABMAAAAAAAAAAAAgwIUAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABQAAABAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-08T17:40:58.552Z",
               "IsPinned": true,
@@ -84,13 +88,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "Table.cs",
               "DocumentMoniker": "C:\\Users\\slega\\Desktop\\C#\\esercizi_scuola\\esercizi_lezione\\Lab\\Naval_battle\\battaglia_navale\\Table.cs",
               "RelativeDocumentMoniker": "battaglia_navale\\Table.cs",
               "ToolTip": "C:\\Users\\slega\\Desktop\\C#\\esercizi_scuola\\esercizi_lezione\\Lab\\Naval_battle\\battaglia_navale\\Table.cs",
               "RelativeToolTip": "battaglia_navale\\Table.cs",
-              "ViewState": "AgIAABYAAAAAAAAAAAAqwDgAAAATAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADQAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-08T17:40:57.25Z",
               "IsPinned": true,
@@ -114,38 +118,74 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Menu.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\slega\\Desktop\\C#\\esercizi_scuola\\esercizi_lezione\\Lab\\Naval_battle\\battaglia_navale\\Menu.cs",
+              "RelativeDocumentMoniker": "battaglia_navale\\Menu.cs",
+              "ToolTip": "C:\\Users\\slega\\Desktop\\C#\\esercizi_scuola\\esercizi_lezione\\Lab\\Naval_battle\\battaglia_navale\\Menu.cs [Design]",
+              "RelativeToolTip": "battaglia_navale\\Menu.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-08T17:40:58.576Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Table.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\slega\\Desktop\\C#\\esercizi_scuola\\esercizi_lezione\\Lab\\Naval_battle\\battaglia_navale\\Table.cs",
+              "RelativeDocumentMoniker": "battaglia_navale\\Table.cs",
+              "ToolTip": "C:\\Users\\slega\\Desktop\\C#\\esercizi_scuola\\esercizi_lezione\\Lab\\Naval_battle\\battaglia_navale\\Table.cs [Design]",
+              "RelativeToolTip": "battaglia_navale\\Table.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-20T16:55:24.419Z",
+              "EditorCaption": " [Design]"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "FloatingWindowState": {
+        "Id": "ad77d6c3-6df2-461c-92f0-d965e71731da",
+        "Display": 1,
+        "X": 565,
+        "Y": 615,
+        "Width": 1882,
+        "Height": 880,
+        "WindowState": 0
+      },
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Menu.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\slega\\Desktop\\C#\\esercizi_scuola\\esercizi_lezione\\Lab\\Naval_battle\\battaglia_navale\\Menu.Designer.cs",
+              "RelativeDocumentMoniker": "battaglia_navale\\Menu.Designer.cs",
+              "ToolTip": "C:\\Users\\slega\\Desktop\\C#\\esercizi_scuola\\esercizi_lezione\\Lab\\Naval_battle\\battaglia_navale\\Menu.Designer.cs",
+              "RelativeToolTip": "battaglia_navale\\Menu.Designer.cs",
+              "ViewState": "AgIAADMAAAAAAAAAAAAowFoAAAA2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-20T16:18:54.868Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 1,
               "Title": "Table.Designer.cs",
               "DocumentMoniker": "C:\\Users\\slega\\Desktop\\C#\\esercizi_scuola\\esercizi_lezione\\Lab\\Naval_battle\\battaglia_navale\\Table.Designer.cs",
               "RelativeDocumentMoniker": "battaglia_navale\\Table.Designer.cs",
               "ToolTip": "C:\\Users\\slega\\Desktop\\C#\\esercizi_scuola\\esercizi_lezione\\Lab\\Naval_battle\\battaglia_navale\\Table.Designer.cs",
               "RelativeToolTip": "battaglia_navale\\Table.Designer.cs",
-              "ViewState": "AgIAADMAAAAAAAAAAAAowEsAAAA3AAAAAAAAAA==",
+              "ViewState": "AgIAAIoAAAAAAAAAAAAowJUAAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-19T07:40:58.209Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Table.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\slega\\Desktop\\C#\\esercizi_scuola\\esercizi_lezione\\Lab\\Naval_battle\\battaglia_navale\\Table.cs",
-              "RelativeDocumentMoniker": "battaglia_navale\\Table.cs",
-              "ToolTip": "C:\\Users\\gamba\\Desktop\\Naval_battle\\battaglia_navale\\Table.cs [Design]",
-              "RelativeToolTip": "..\\..\\..\\..\\..\\..\\..\\gamba\\Desktop\\Naval_battle\\battaglia_navale\\Table.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-19T07:38:07.433Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Menu.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\slega\\Desktop\\C#\\esercizi_scuola\\esercizi_lezione\\Lab\\Naval_battle\\battaglia_navale\\Menu.cs",
-              "RelativeDocumentMoniker": "battaglia_navale\\Menu.cs",
-              "ToolTip": "C:\\Users\\gamba\\Desktop\\Naval_battle\\battaglia_navale\\Menu.cs [Design]",
-              "RelativeToolTip": "..\\..\\..\\..\\..\\..\\..\\gamba\\Desktop\\Naval_battle\\battaglia_navale\\Menu.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-08T17:40:58.576Z"
             }
           ]
         }

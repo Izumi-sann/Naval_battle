@@ -23,7 +23,7 @@ namespace battaglia_navale
             Cursor = Cursors.WaitCursor;
 
             Table.Computer_board.Invoke((MethodInvoker)delegate {
-                Table.Computer_board.Location = new Point(Table.User_board.Location.X + Convert.ToInt32(Width_input.Value) * 68 +40, 12);
+                Table.Computer_board.Location = new Point(Table.User_board.Location.X + Convert.ToInt32(Width_input.Value) * 68 +40, Table.User_board.Location.Y);
             });
 
             Thread user = new Thread(Define_UserTable);
@@ -37,9 +37,7 @@ namespace battaglia_navale
             user.Join();
             computer.Join();
 
-            //MessageBox.Show($"{Convert.ToInt32(Width_input.Value)} | {Table.table_dimension}");
             Table.table_dimension = Convert.ToInt32(Width_input.Value);
-            //MessageBox.Show($"{Table.computer_board_matrix.GetLength(1)} | {Table.table_dimension}");
 
             Cursor = Cursors.Default;
 

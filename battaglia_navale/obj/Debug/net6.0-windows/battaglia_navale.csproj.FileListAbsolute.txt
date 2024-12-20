@@ -87,3 +87,4 @@ C:\Users\slega\Desktop\C#\esercizi_scuola\esercizi_lezione\Lab\Naval_battle\batt
 C:\Users\slega\Desktop\C#\esercizi_scuola\esercizi_lezione\Lab\Naval_battle\battaglia_navale\obj\Debug\net6.0-windows\battaglia_navale.pdb
 C:\Users\slega\Desktop\C#\esercizi_scuola\esercizi_lezione\Lab\Naval_battle\battaglia_navale\obj\Debug\net6.0-windows\battaglia_navale.genruntimeconfig.cache
 C:\Users\slega\Desktop\C#\esercizi_scuola\esercizi_lezione\Lab\Naval_battle\battaglia_navale\obj\Debug\net6.0-windows\ref\battaglia_navale.dll
+C:\Users\slega\Desktop\C#\esercizi_scuola\esercizi_lezione\Lab\Naval_battle\battaglia_navale\obj\Debug\net6.0-windows\battaglia_navale.Properties.Resources.resources

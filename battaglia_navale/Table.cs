@@ -26,27 +26,31 @@ namespace battaglia_navale
         {
             menu_form = new Menu();
             menu_form.StartPosition = FormStartPosition.Manual;
-            menu_form.Location = new Point(Location.X+Width/2- menu_form.Width/2, Location.Y+Size.Height/ 2 - menu_form.Height / 2);
+            menu_form.Location = new Point(Location.X + Width / 2 - menu_form.Width / 2, Location.Y + Size.Height / 2 - menu_form.Height / 2);
             Show();
             menu_form.ShowDialog();
         }
-        
-        public static void Board_buttonClick(object sender, EventArgs e) { //i'm using this method just to centralize the process
+
+        public static void Board_buttonClick(object sender, EventArgs e)
+        { //i'm using this method just to centralize the process
             if (game_phase == "preparation")
                 CreateShip(sender, e);
             else
                 HitTile(sender, e);
         }
 
-        public static void HitTile(object sender, EventArgs e) {
+        public static void HitTile(object sender, EventArgs e)
+        {
             if (((Button)sender).Tag.ToString() == "ship tile")
                 ((Ship_tile)sender).SetDestroyed();
         }
-        
-        public static void CreateShip(object sender, EventArgs e) {
-            try { 
+
+        public static void CreateShip(object sender, EventArgs e)
+        {
+            try
+            {
                 string[] tag = ((Button)sender).Tag.ToString().Split('|');
-                string ship_name = Ship_input.SelectedItem.ToString();
+                 string ship_name = Ship_input.SelectedItem.ToString();
 
                 int[] coordinates = new int[] { Convert.ToInt32(tag[0]), Convert.ToInt32(tag[1]) };
                 int lenght = GetLenght(ship_name); //mappa il nome con la lunghezza della nave
@@ -54,22 +58,27 @@ namespace battaglia_navale
                 bool IsVertical = Button_vertical.Checked;
                 Ship new_ship = new Ship(IsVertical, lenght, coordinates, ship_name, "user");
             }
-            catch (NullReferenceException exce) {
-                MessageBox.Show(exce.Message, "selection error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            catch (NullReferenceException exce)
+            {
+                MessageBox.Show("you haven't selected the ship or it's orientation", "selection error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            catch (ArgumentException exce) {
+            catch (ArgumentException exce)
+            {
                 MessageBox.Show(exce.Message, "position error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            catch (Exception exce) {
+            catch (Exception exce)
+            {
                 MessageBox.Show("you can't perform this action", "generic error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
 
-        private static int GetLenght(string name) { 
-            switch (name.ToLower()){
+        private static int GetLenght(string name)
+        {
+            switch (name.ToLower())
+            {
                 case "portaerei(5)": //portaerei
-                    return 5; 
+                    return 5;
                 case "corazzata(4)": //corazzata
                     return 4;
                 case "incrociatore(3)": //incrociatore
