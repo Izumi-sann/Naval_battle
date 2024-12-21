@@ -68,5 +68,29 @@ namespace battaglia_navale
 
             return ship_tiles;
         }
+    
+        public void RemoveShip()
+        {
+            int[] coordinates = this.coordinates;
+            int lenght = this.length;
+
+            //rimuovere controllo, rimuovere da matrix, dispose elemento, aggiunta nuovo pulsante
+            if (this.IsVertical) { 
+                for (int i = 0; i < length; i++) {
+                    Table.User_board.Controls.Remove(Table.user_board_matrix[coordinates[0], coordinates[1] + i]);
+                    Table.user_board_matrix[coordinates[0], coordinates[1] + i].Dispose();
+                    Table.user_board_matrix[coordinates[0], coordinates[1] + i] = null;
+                    Menu.DefineButton(Table.user_board_matrix, Table.User_board, new int[] { coordinates[0], coordinates[1] + i });
+                }
+            }
+            else {
+                for (int i = 0; i < length; i++) { 
+                    Table.User_board.Controls.Remove(Table.user_board_matrix[coordinates[0] + i, coordinates[1]]);
+                    Table.user_board_matrix[coordinates[0] + i, coordinates[1]].Dispose();
+                    Table.user_board_matrix[coordinates[0] + i, coordinates[1]] = null;
+                    Menu.DefineButton(Table.user_board_matrix, Table.User_board, new int[] { coordinates[0] + i, coordinates[1]});
+                }
+            }
+        }
     }
 }

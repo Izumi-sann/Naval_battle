@@ -1,5 +1,7 @@
 using System.Runtime.CompilerServices;
 using System.Threading;
+using System.Xml.Linq;
+/*log1: what was i thinking when first created the program structure not to add 2 separate classes for user and computer board? you stupid donkey*/
 
 namespace battaglia_navale
 {
@@ -11,6 +13,14 @@ namespace battaglia_navale
         private Menu menu_form;
 
         public static string game_phase = "preparation"; //or battle
+        internal static Dictionary<string, ShipData> ships_counter = new Dictionary<string, ShipData>
+        {
+            { "portaerei(5)", new ShipData(1) },
+            { "corazzata(4)", new ShipData(1) },
+            { "incrociatore(3)",  new ShipData(2) },
+            { "cacciatorpediniere(3)", new ShipData(1) },
+            { "sottomarino(2)", new ShipData(1) }
+        };
 
         public Table()
         {
@@ -47,16 +57,21 @@ namespace battaglia_navale
 
         public static void CreateShip(object sender, EventArgs e)
         {
+            //devi inserire la nave in ship_counter
             try
             {
+                //data
                 string[] tag = ((Button)sender).Tag.ToString().Split('|');
-                 string ship_name = Ship_input.SelectedItem.ToString();
+                string ship_name = Ship_input.SelectedItem.ToString();
 
                 int[] coordinates = new int[] { Convert.ToInt32(tag[0]), Convert.ToInt32(tag[1]) };
                 int lenght = GetLenght(ship_name); //mappa il nome con la lunghezza della nave
-
                 bool IsVertical = Button_vertical.Checked;
+
+                //create the ship
                 Ship new_ship = new Ship(IsVertical, lenght, coordinates, ship_name, "user");
+                VerifyShipAvailability(ship_name);
+                ships_counter[ship_name.ToLower()].AddShip(new_ship);
             }
             catch (NullReferenceException exce)
             {
@@ -68,12 +83,20 @@ namespace battaglia_navale
             }
             catch (Exception exce)
             {
-                MessageBox.Show("you can't perform this action", "generic error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"you can't perform this action; {exce.Message} ", "generic error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
 
-        private static int GetLenght(string name)
+        private static void VerifyShipAvailability(string name) { 
+            name = name.ToLower();
+            if (ships_counter[name].Counter == 0) {
+                ships_counter[name].Ships[ships_counter[name].Ships.Length - 1].RemoveShip();
+                ships_counter[name].Counter++;
+            }
+        }
+
+        private static int GetLenght(string name)//devi decrementare il contatore
         {
             switch (name.ToLower())
             {

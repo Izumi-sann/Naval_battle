@@ -62,11 +62,11 @@ namespace battaglia_navale
             Button[,] matrice_tabella = ResizeMatrix(Table.user_board_matrix, table_width, table_height);
 
             //create the buttons matrix
-            for (int column = 0; column < table_width; column++)
-                for (int row = 0; row < table_height; row++)
+            for (int row = 0; row < table_height; row++)
+                for (int column = 0; column < table_width; column++)
                     Table.User_board.Invoke((MethodInvoker)delegate
                     {
-                        DefineButton(matrice_tabella, Table.User_board, column, row);
+                        DefineButton(matrice_tabella, Table.User_board, new int[] { column, row});
                     });
 
             Table.user_board_matrix = matrice_tabella;
@@ -88,11 +88,11 @@ namespace battaglia_navale
             Button[,] matrice_tabella = ResizeMatrix(Table.computer_board_matrix, table_width, table_height);
             
             //create the buttons matrix
-            for (int column = 0; column < table_width; column++)
-                for (int row = 0; row < table_height; row++)
+            for (int row = 0; row < table_height; row++)
+                for (int column = 0; column < table_width; column++)
                     Table.Computer_board.Invoke((MethodInvoker)delegate
                     {
-                            DefineButton(matrice_tabella, Table.Computer_board, column, row);
+                            DefineButton(matrice_tabella, Table.Computer_board, new int[] { column, row });
                     });
 
             Table.computer_board_matrix = matrice_tabella;
@@ -119,8 +119,10 @@ namespace battaglia_navale
             return newMatrix;
         }
 
-        private static void DefineButton(Button[,] matrice_tabella, Panel Playing_board, int row, int column)
+        public static void DefineButton(Button[,] matrice_tabella, Panel Playing_board, int[] coordinates)
         {
+            int column = coordinates[0];
+            int row = coordinates[1];
             Button tile = new Button();
 
             // Utilizza Invoke per assegnare il Parent del bottone
