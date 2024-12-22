@@ -18,12 +18,12 @@ namespace battaglia_navale
             InitializeComponent();
         }
 
-        public async void DefinisciTabella(object sender, EventArgs e)
+        public void DefinisciTabella(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
 
             Table.Computer_board.Invoke((MethodInvoker)delegate {
-                Table.Computer_board.Location = new Point(Table.User_board.Location.X + Convert.ToInt32(Width_input.Value) * 68 +40, 12);
+                Table.Computer_board.Location = new Point(Table.User_board.Location.X + Convert.ToInt32(Width_input.Value) * 68 +40, Table.User_board.Location.Y);
             });
 
             Thread user = new Thread(Define_UserTable);
@@ -37,9 +37,7 @@ namespace battaglia_navale
             user.Join();
             computer.Join();
 
-            //MessageBox.Show($"{Convert.ToInt32(Width_input.Value)} | {Table.table_dimension}");
             Table.table_dimension = Convert.ToInt32(Width_input.Value);
-            //MessageBox.Show($"{Table.computer_board_matrix.GetLength(1)} | {Table.table_dimension}");
 
             Cursor = Cursors.Default;
 
@@ -64,11 +62,11 @@ namespace battaglia_navale
             Button[,] matrice_tabella = ResizeMatrix(Table.user_board_matrix, table_width, table_height);
 
             //create the buttons matrix
-            for (int column = 0; column < table_width; column++)
-                for (int row = 0; row < table_height; row++)
+            for (int row = 0; row < table_height; row++)
+                for (int column = 0; column < table_width; column++)
                     Table.User_board.Invoke((MethodInvoker)delegate
                     {
-                        DefineButton(matrice_tabella, Table.User_board, column, row);
+                        DefineButton(matrice_tabella, Table.User_board, new int[] { column, row});
                     });
 
             Table.user_board_matrix = matrice_tabella;
@@ -90,11 +88,11 @@ namespace battaglia_navale
             Button[,] matrice_tabella = ResizeMatrix(Table.computer_board_matrix, table_width, table_height);
             
             //create the buttons matrix
-            for (int column = 0; column < table_width; column++)
-                for (int row = 0; row < table_height; row++)
+            for (int row = 0; row < table_height; row++)
+                for (int column = 0; column < table_width; column++)
                     Table.Computer_board.Invoke((MethodInvoker)delegate
                     {
-                            DefineButton(matrice_tabella, Table.Computer_board, column, row);
+                            DefineButton(matrice_tabella, Table.Computer_board, new int[] { column, row });
                     });
 
             Table.computer_board_matrix = matrice_tabella;
@@ -121,8 +119,10 @@ namespace battaglia_navale
             return newMatrix;
         }
 
-        private static void DefineButton(Button[,] matrice_tabella, Panel Playing_board, int row, int column)
+        public static void DefineButton(Button[,] matrice_tabella, Panel Playing_board, int[] coordinates)
         {
+            int column = coordinates[0];
+            int row = coordinates[1];
             Button tile = new Button();
 
             // Utilizza Invoke per assegnare il Parent del bottone
@@ -138,7 +138,8 @@ namespace battaglia_navale
                 tile.Left = column * 70;
                 tile.Width = 68;
                 tile.Height = 50;
-                tile.Text = $"{row + 1} - {column + 1}";
+                tile.Tag = $"{column}|{row}";
+                tile.Text = $"";
 
                 // Apparence
                 tile.FlatStyle = FlatStyle.Flat;
@@ -146,7 +147,7 @@ namespace battaglia_navale
                 tile.BackColor = Color.LightBlue;
 
                 // Events
-                tile.Click += new EventHandler(Table.HitTile);
+                tile.Click += new EventHandler(Table.Board_buttonClick);
                 matrice_tabella[column, row] = tile;            
             }
         }
@@ -181,7 +182,6 @@ namespace battaglia_navale
 
             return false;
         }
-
     }
 }
 

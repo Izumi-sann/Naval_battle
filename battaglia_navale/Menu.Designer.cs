@@ -38,7 +38,7 @@
             // 
             this.Width_input.Location = new System.Drawing.Point(74, 43);
             this.Width_input.Maximum = new decimal(new int[] {
-            15,
+            13,
             0,
             0,
             0});
@@ -51,7 +51,7 @@
             this.Width_input.Size = new System.Drawing.Size(87, 27);
             this.Width_input.TabIndex = 0;
             this.Width_input.Value = new decimal(new int[] {
-            7,
+            Table.table_dimension > 7 ? Table.table_dimension : 7,
             0,
             0,
             0});
