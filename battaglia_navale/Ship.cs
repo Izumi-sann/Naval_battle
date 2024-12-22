@@ -14,7 +14,7 @@ namespace battaglia_navale
         
         public bool isDestroyed; //tutte le tiles della barca sono distrutte
         public bool IsVertical; //true: vertical; false:horizontal
-        public Ship_tile[] ship_tiles; //le tiles della barca
+        public ShipTile[] ship_tiles; //le tiles della barca
 
         public Ship(bool IsVertical, int lenght, int[] coordinates, string name, string sender) {
             Panel board = sender == "user" ? Table.User_board : Table.Computer_board;
@@ -53,16 +53,16 @@ namespace battaglia_navale
             return true;
         }
 
-        private Ship_tile[] SetTiles(string name, int lenght, int[] coordinates, bool IsVertical, string sender) {
-            Ship_tile[] ship_tiles = new Ship_tile[lenght];
+        private ShipTile[] SetTiles(string name, int lenght, int[] coordinates, bool IsVertical, string sender) {
+            ShipTile[] ship_tiles = new ShipTile[lenght];
 
             if (IsVertical) { 
                 for (int i = 0; i < lenght; i++)
-                    ship_tiles[i] = new Ship_tile(name, new int[]{coordinates[0], coordinates[1]+i}, sender);
+                    ship_tiles[i] = new ShipTile(name, new int[]{coordinates[0], coordinates[1]+i}, sender);
             }
             else { //horizontal 
                 for (int i = 0; i < lenght; i++)
-                    ship_tiles[i] = new Ship_tile(name, new int[] { coordinates[0] + i, coordinates[1] }, sender);
+                    ship_tiles[i] = new ShipTile(name, new int[] { coordinates[0] + i, coordinates[1] }, sender);
             }
 
 

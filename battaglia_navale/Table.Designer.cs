@@ -32,7 +32,7 @@
             User_board = new Panel();
             Cambia_tabella = new Button();
             Computer_board = new Panel();
-            button1 = new Button();
+            button_StartGame = new Button();
             Ship_input = new ComboBox();
             Button_vertical = new RadioButton();
             Button_horizontal = new RadioButton();
@@ -71,14 +71,15 @@
             Computer_board.Size = new Size(4, 4);
             Computer_board.TabIndex = 1;
             // 
-            // button1
+            // button_StartGame
             // 
-            button1.Location = new Point(7, 76);
-            button1.Name = "button1";
-            button1.Size = new Size(174, 27);
-            button1.TabIndex = 3;
-            button1.Text = "Start game";
-            button1.UseVisualStyleBackColor = true;
+            button_StartGame.Location = new Point(7, 76);
+            button_StartGame.Name = "button1";
+            button_StartGame.Size = new Size(174, 27);
+            button_StartGame.TabIndex = 3;
+            button_StartGame.Text = "Start game";
+            button_StartGame.UseVisualStyleBackColor = true;
+            button_StartGame.Click += Start_game_Click;
             // 
             // Ship_input
             // 
@@ -118,7 +119,7 @@
             groupBox2.Controls.Add(Button_vertical);
             groupBox2.Controls.Add(Button_horizontal);
             groupBox2.Controls.Add(Ship_input);
-            groupBox2.Controls.Add(button1);
+            groupBox2.Controls.Add(button_StartGame);
             groupBox2.Controls.Add(Cambia_tabella);
             groupBox2.Location = new Point(0, 0);
             groupBox2.Margin = new Padding(3, 4, 3, 4);
@@ -161,7 +162,7 @@
 
         #endregion
         private GroupBox groupBox2;
-        private Button button1;
+        private Button button_StartGame;
         private Button Cambia_tabella;
         private Label label1;
         private static RadioButton Button_vertical;

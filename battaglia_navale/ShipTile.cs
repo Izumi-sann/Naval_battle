@@ -9,13 +9,13 @@ using System.Xml.Linq;
 
 namespace battaglia_navale
 {
-    internal class Ship_tile : Button
+    internal class ShipTile : Button
     {
         private int[] position_matrix { get; set; } public int[] Position { get => position_matrix; } // posizione della casella
         private bool isDestroyed { get; set; } public bool IsDestroyed { get => isDestroyed; } // casella distrutta
 
 
-        public Ship_tile(string name, int[] position, string sender)
+        public ShipTile(string name, int[] position, string sender)
         {
             this.isDestroyed = false;
             this.position_matrix = position;
@@ -24,7 +24,7 @@ namespace battaglia_navale
             Button[,] board_matrix = sender == "user" ? Table.user_board_matrix : Table.computer_board_matrix;
 
             DefineButtonStyle(name, sender, board);
-            InitializeComponent(position, sender);
+            InitializeComponent(position, sender, board, board_matrix);
         }
         
         /// <summary>
@@ -32,14 +32,14 @@ namespace battaglia_navale
         /// </summary>
         /// <param name="position"></param>
         /// <param name="name"></param>
-        private void InitializeComponent(int[] position, string sender)
+        private void InitializeComponent(int[] position, string sender, Panel board, Button[,] board_matrix)
         {
-            this.Location = Table.user_board_matrix[position[0], position[1]].Location;//set location in the panel
+            this.Location = board_matrix[position[0], position[1]].Location;//set location in the panel
 
-            Table.User_board.Controls.Remove(Table.user_board_matrix[position[0], position[1]]); //remove the old button
+            board.Controls.Remove(board_matrix[position[0], position[1]]); //remove the old button
 
-            Table.user_board_matrix[position[0], position[1]] = this;//add the new button
-            Table.User_board.Controls.Add(this);
+            board_matrix[position[0], position[1]] = this;//add the new button
+            board.Controls.Add(this);
         }
 
         private void DefineButtonStyle(string name, string sender, Panel board) 
@@ -53,11 +53,10 @@ namespace battaglia_navale
             char[] name_array = name.ToArray();
             this.Tag = "ship tile";
             this.Text = sender == "user" ? new string(new char[] { name_array[0], name_array[1] }).ToUpper() : ""; //se è nel campo dell'utente aggiunge le prime due lettere; es: portaerei -> po
-
             // Apparence
             this.FlatStyle = FlatStyle.Flat;
             this.FlatAppearance.BorderSize = sender == "user" ? 1 : 0;
-            this.BackColor = sender == "user" ? System.Drawing.Color.DarkGray : System.Drawing.Color.LightBlue;
+            this.BackColor = sender == "user" ? System.Drawing.Color.DarkGray : System.Drawing.Color.SkyBlue;
 
             // Events
             this.Click += new EventHandler(Table.Board_buttonClick);
