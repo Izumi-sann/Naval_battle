@@ -40,7 +40,7 @@ namespace battaglia_navale
             Table.table_dimension = Convert.ToInt32(Width_input.Value);
 
             Cursor = Cursors.Default;
-
+            
             //close the form
             Close();
         }
@@ -90,12 +90,40 @@ namespace battaglia_navale
             //create the buttons matrix
             for (int row = 0; row < table_height; row++)
                 for (int column = 0; column < table_width; column++)
-                    Table.Computer_board.Invoke((MethodInvoker)delegate
-                    {
+                    Table.Computer_board.Invoke((MethodInvoker)delegate{
                             DefineButton(matrice_tabella, Table.Computer_board, new int[] { column, row });
                     });
 
+            //aggiorna matrice
             Table.computer_board_matrix = matrice_tabella;
+        }
+        
+        public void create_computer_ship(string key) { 
+            Random generatore = new Random();
+            Ship new_ship;
+
+            //define parameters
+            bool IsVertical = generatore.Next(0, 2) == 0 ? false : true;
+            int lenght = Table.GetLenght(key);
+            int dimension = Convert.ToInt32(Width_input.Value);
+            while (true) {
+                //define coordinates until they're accepted
+                int x = generatore.Next(0, IsVertical ? dimension : dimension - lenght +1);//get the second value considering the ship's lenght and table dimension
+                int y = generatore.Next(0, IsVertical ? dimension - lenght +1 : dimension);
+                int[] coordinates = new int[] { x, y };
+
+                try { 
+                    if (Table.Computer_board.InvokeRequired)
+                        Table.Computer_board.Invoke((MethodInvoker)delegate {
+                            new_ship = new Ship(IsVertical, lenght, coordinates, key, "computer");
+                        });
+                    else
+                        new_ship = new Ship(IsVertical, lenght, coordinates, key, "computer");
+                    break;// if the ship is created, exit the loop  
+                } catch (Exception) {
+                    continue; //else , try again
+                }
+            }
         }
 
         private static Button[,] ResizeMatrix(Button[,] oldMatrix, int newRows, int newCols)
@@ -123,7 +151,7 @@ namespace battaglia_navale
         {
             int column = coordinates[0];
             int row = coordinates[1];
-            Button tile = new Button();
+            SeaTile tile = new SeaTile();
 
             // Utilizza Invoke per assegnare il Parent del bottone
             if (matrice_tabella[column, row] == null)
@@ -144,7 +172,7 @@ namespace battaglia_navale
                 // Apparence
                 tile.FlatStyle = FlatStyle.Flat;
                 tile.FlatAppearance.BorderSize = 0;
-                tile.BackColor = Color.LightBlue;
+                tile.BackColor = Color.SkyBlue;
 
                 // Events
                 tile.Click += new EventHandler(Table.Board_buttonClick);
