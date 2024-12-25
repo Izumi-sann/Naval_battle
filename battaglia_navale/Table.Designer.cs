@@ -37,6 +37,7 @@
             Button_vertical = new RadioButton();
             Button_horizontal = new RadioButton();
             groupBox2 = new GroupBox();
+            Button_resetGame = new Button();
             label1 = new Label();
             groupBox2.SuspendLayout();
             SuspendLayout();
@@ -74,11 +75,12 @@
             // button_StartGame
             // 
             button_StartGame.Location = new Point(7, 76);
-            button_StartGame.Name = "button1";
-            button_StartGame.Size = new Size(174, 27);
+            button_StartGame.Name = "button_StartGame";
+            button_StartGame.Size = new Size(174, 35);
             button_StartGame.TabIndex = 3;
             button_StartGame.Text = "Start game";
             button_StartGame.UseVisualStyleBackColor = true;
+            button_StartGame.Enabled = false;
             button_StartGame.Click += Start_game_Click;
             // 
             // Ship_input
@@ -86,14 +88,14 @@
             Ship_input.DropDownStyle = ComboBoxStyle.DropDownList;
             Ship_input.FormattingEnabled = true;
             Ship_input.Items.AddRange(new object[] { "Portaerei(5)", "Corazzata(4)", "Incrociatore(3)", "Cacciatorpediniere(3)", "Sottomarino(2)" });
-            Ship_input.Location = new Point(338, 28);
+            Ship_input.Location = new Point(533, 28);
             Ship_input.Name = "Ship_input";
             Ship_input.Size = new Size(174, 28);
             Ship_input.TabIndex = 4;
             // 
             // Button_vertical
             // 
-            Button_vertical.Location = new Point(338, 79);
+            Button_vertical.Location = new Point(533, 79);
             Button_vertical.Name = "Button_vertical";
             Button_vertical.Size = new Size(78, 24);
             Button_vertical.TabIndex = 6;
@@ -104,7 +106,7 @@
             // Button_horizontal
             // 
             Button_horizontal.Checked = true;
-            Button_horizontal.Location = new Point(338, 108);
+            Button_horizontal.Location = new Point(533, 108);
             Button_horizontal.Name = "Button_horizontal";
             Button_horizontal.Size = new Size(97, 24);
             Button_horizontal.TabIndex = 7;
@@ -115,6 +117,7 @@
             // groupBox2
             // 
             groupBox2.BackgroundImageLayout = ImageLayout.None;
+            groupBox2.Controls.Add(Button_resetGame);
             groupBox2.Controls.Add(label1);
             groupBox2.Controls.Add(Button_vertical);
             groupBox2.Controls.Add(Button_horizontal);
@@ -130,10 +133,21 @@
             groupBox2.TabStop = false;
             groupBox2.Text = "Impostazioni";
             // 
+            // Button_resetTable
+            // 
+            Button_resetGame.Location = new Point(196, 28);
+            Button_resetGame.Name = "Button_resetGame";
+            Button_resetGame.Size = new Size(174, 31);
+            Button_resetGame.TabIndex = 9;
+            Button_resetGame.Text = "reset game";
+            Button_resetGame.UseVisualStyleBackColor = true;
+            Button_resetGame.Enabled = false;
+            Button_resetGame.Click += ResetTable_click;
+            // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(245, 28);
+            label1.Location = new Point(440, 28);
             label1.Name = "label1";
             label1.Size = new Size(83, 20);
             label1.TabIndex = 8;
@@ -162,8 +176,9 @@
 
         #endregion
         private GroupBox groupBox2;
-        private Button button_StartGame;
-        private Button Cambia_tabella;
+        private static Button Cambia_tabella;
+        private static Button button_StartGame;
+        private static Button Button_resetGame;
         private Label label1;
         private static RadioButton Button_vertical;
         private static RadioButton Button_horizontal;
