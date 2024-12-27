@@ -164,7 +164,7 @@
             Controls.Add(groupBox2);
             Controls.Add(Computer_board);
             Controls.Add(User_board);
-            FormBorderStyle = FormBorderStyle.FixedSingle;
+            FormBorderStyle = FormBorderStyle.Sizable;
             Name = "Table";
             Text = "Naval Battle: the awakening";
             WindowState = FormWindowState.Maximized;

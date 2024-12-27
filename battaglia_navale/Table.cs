@@ -1,4 +1,5 @@
 using Microsoft.VisualBasic.Devices;
+using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Xml.Linq;
@@ -9,7 +10,7 @@ using System.Xml.Linq;
 /*sviluppo_gameplay
 -funzione di reset con aggiunta di appostito tasto **medium --> done
 -opzione di reset in messagebox quando la partita termina **easy --> done
--algoritmo di attacco per computer **difficult
+-algoritmo di attacco per computer **difficult --> in progress
 -verifica presenza di una nave prima di poter iniziare **easy --> done
 -disattiva i bottoni non necessari nella varie fasi **easy --> done
 -disattiva la board nemica in preparazione e la board user in battaglia **easy
@@ -21,8 +22,6 @@ namespace battaglia_navale
 //attributi
         private Menu menu_form;
         public static int table_dimension { get; set; }
-        public static Button[,] user_board_matrix { get; set; }
-        public static Button[,] computer_board_matrix { get; set; }
 
         public static (int user, int computer) Remaining_ship_tiles = (0, 0);
 
@@ -37,12 +36,39 @@ namespace battaglia_navale
 
         public static string game_phase = "preparation"; //or battle
         private static bool IsUserTurn = true;
+        public static Button[,] user_board_matrix { get; set; }
 
-        //costruttore e inizializzazione form
+        //computer variables
+        public static Button[,] computer_board_matrix { get; set; }
+        private struct lastShipHit
+        {
+            public static int[] first = new int[] { -1, -1 };
+            public static int[] last = new int[] { -1, -1 };
+            public static bool shipHoocked = false;
+            public static bool isVertical = false;
+            public static int counter = 0;
+            public static int shipDestroyed = 0;
+            public static int failed = 0;
+            public static (bool bottom, bool top, bool left, bool right) direction = (false, false, false, false);
+
+            public static void StandardValue() {
+                first = new int[] { -1, -1 };
+                last = new int[] { -1, -1 };
+                shipHoocked = false;
+                isVertical = false;
+                counter = 0;
+                shipDestroyed = 0;
+                failed = 0;
+                direction = (false, false, false, false);
+            }
+        }
+
+//costruttore e inizializzazione form
         public Table()
         {
             InitializeComponent();
             Modifica_tabella_Click(null, EventArgs.Empty);
+            EnableButtons();
         }
 
         private void Form1_Load(object sender, EventArgs e) { }
@@ -74,7 +100,8 @@ namespace battaglia_navale
         { //i'm using this method just to centralize the process
             if (game_phase == "preparation")
                 CreateShip(sender, e);
-            else {
+            else
+            {
                 if (IsUserTurn)
                     HitTile(sender, e);
                 while (!IsUserTurn)
@@ -82,21 +109,26 @@ namespace battaglia_navale
             }
         }
 
-        public static void HitTile(object sender, EventArgs e)
+        public static bool HitTile(object sender, EventArgs e)
         {
-            if (((Button)sender).Tag.ToString() == "ship tile"){
-                if (!((ShipTile)sender).IsDestroyed) { 
+            if (((Button)sender).Tag.ToString() == "ship tile")
+            {
+                if (!((ShipTile)sender).IsDestroyed)
+                {
                     DestroyShip(sender);
                     VerifyWinner();
                     IsUserTurn = !IsUserTurn;
-                    return;
+                    return true;
                 }
             }
-            else if (!((SeaTile)sender).isHit){ 
+            else if (!((SeaTile)sender).isHit)
+            {
                 ((SeaTile)sender).HitTile();
                 IsUserTurn = !IsUserTurn;
-                return;
+                return true;
             }
+
+            return false;
         }
 
         private static void DestroyShip(object sender)
@@ -110,10 +142,11 @@ namespace battaglia_navale
 
         }
 
-        private static void VerifyWinner() {
+        private static void VerifyWinner()
+        {
             DialogResult result = DialogResult.None;
 
-            if (Remaining_ship_tiles.user == 0) 
+            if (Remaining_ship_tiles.user == 0)
                 result = MessageBox.Show("GAME OVER! IL VINCITORE è Computer!", "sconfitta", MessageBoxButtons.RetryCancel, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
             else if (Remaining_ship_tiles.computer == 0)
                 result = MessageBox.Show("THE WINNER IS User! YOU HAVE BEATEN Computer!", "vittoria", MessageBoxButtons.RetryCancel, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
@@ -124,7 +157,7 @@ namespace battaglia_navale
         }
 
         private static void ResetTable_click(object sender = null, EventArgs e = null)
-        {   
+        {
             User_board.Controls.Clear();
             Computer_board.Controls.Clear();
             user_board_matrix = null;
@@ -150,7 +183,8 @@ namespace battaglia_navale
         public static void CreateShip(object sender, EventArgs e)
         {
             //devi inserire la nave in ship_counter
-            try{
+            try
+            {
                 //data
                 string[] tag = ((Button)sender).Tag.ToString().Split('|');
                 string ship_name = Ship_input.SelectedItem.ToString();
@@ -163,20 +197,22 @@ namespace battaglia_navale
                 Ship new_ship = new Ship(IsVertical, lenght, coordinates, ship_name, "user");
                 VerifyShipAvailability(ship_name);
                 ships_counter[ship_name.ToLower()].user.AddShip(new_ship);
-                Remaining_ship_tiles.user += lenght; 
+                Remaining_ship_tiles.user += lenght;
             }
-            catch (NullReferenceException exce){
+            catch (NullReferenceException exce)
+            {
                 MessageBox.Show("you haven't selected the ship or it's orientation", "selection error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            catch (ArgumentException exce){
+            catch (ArgumentException exce)
+            {
                 MessageBox.Show(exce.Message, "position error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            catch (Exception exce){
+            catch (Exception exce)
+            {
                 MessageBox.Show($"you can't perform this action; {exce.Message} ", "generic error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-            MessageBox.Show($"user: {Remaining_ship_tiles.user}");
-            EnableButtons(defult : false);
+            EnableButtons(defult: false);
         }
 
         private void create_computer_ship(string key)
@@ -212,15 +248,19 @@ namespace battaglia_navale
             Table.Remaining_ship_tiles.computer += lenght;
         }
 
-        private static void VerifyShipAvailability(string name) { 
+        private static void VerifyShipAvailability(string name)
+        {
             name = name.ToLower();
-            if (ships_counter[name].user.Counter == 0) {
+            if (ships_counter[name].user.Counter == 0)
+            {
                 ships_counter[name].user.Ships[ships_counter[name].user.Ships.Length - 1].RemoveShip();
                 ships_counter[name].user.Counter++;
+                Remaining_ship_tiles.user -= GetLenght(name);
+
             }
         }
 
-        public static int GetLenght(string name)//devi decrementare il contatore
+        public static int GetLenght(string name)
         {
             switch (name.ToLower())
             {
@@ -238,16 +278,189 @@ namespace battaglia_navale
                     throw new Exception("not recognized ship");
             }
         }
-        
-        private static void EnableButtons(bool defult = true) { 
-            if (game_phase == "preparation" && defult) {//initial situation
+
+        private static void AttackUser()
+        {
+            Random generatore = new Random();
+            int[] coordinates;
+
+            coordinates = Get_coordinates();
+
+            if (coordinates.Contains(-1))
+                return;
+
+            /*MessageBox.Show($"coordinates: [{coordinates[0]}, {coordinates[1]}]\n" +
+                    $"first: [{lastShipHit.first[0]}, {lastShipHit.first[1]}]\n" +
+                    $"last: [{lastShipHit.last[0]}, {lastShipHit.last[1]}]\n" +
+                    $"shipHoocked: {lastShipHit.shipHoocked}\n" +
+                    $"isVertical: {lastShipHit.isVertical}\n" +
+                    $"counter: {lastShipHit.counter}\n" +
+                    $"shipDestroyed: {lastShipHit.shipDestroyed}\n" +
+                    $"failed: {lastShipHit.failed}\n" +
+                    $"direction: (bottom: {lastShipHit.direction.bottom}, top: {lastShipHit.direction.top}, left: {lastShipHit.direction.left}, right: {lastShipHit.direction.right})");*/
+
+            bool hit = HitTile(user_board_matrix[coordinates[0], coordinates[1]], EventArgs.Empty);
+
+            //if you hit ship
+            if (hit && user_board_matrix[coordinates[0], coordinates[1]].Tag.ToString() == "ship tile")
+            {
+                if (lastShipHit.shipDestroyed == 0)
+                {
+                    lastShipHit.first = new int[] { coordinates[0], coordinates[1] };
+                    lastShipHit.shipHoocked = true;
+                }
+                lastShipHit.last = new int[] { coordinates[0], coordinates[1] };
+                lastShipHit.direction = (false, false, false, false);
+                lastShipHit.counter++;
+                lastShipHit.shipDestroyed++;
+
+                lastShipHit.failed = 0;
+            }
+            //if you hit sea
+            else if (hit)
+            {
+                lastShipHit.direction = (false, false, false, false);
+                lastShipHit.last = new int[] { lastShipHit.first[0], lastShipHit.first[1] };
+                lastShipHit.counter++;
+                lastShipHit.failed = 0;
+            }
+            //nothing is hit
+            else { lastShipHit.failed++; }
+                
+                
+
+            /*MessageBox.Show($"first: [{lastShipHit.first[0]}, {lastShipHit.first[1]}]\n" +
+                $"coordinates: [{coordinates[0]}, {coordinates[1]}]\n" +
+                $"last: [{lastShipHit.last[0]}, {lastShipHit.last[1]}]\n" +
+                $"shipHoocked: {lastShipHit.shipHoocked}\n" +
+                $"isVertical: {lastShipHit.isVertical}\n" +
+                $"counter: {lastShipHit.counter}\n" +
+                $"shipDestroyed: {lastShipHit.shipDestroyed}\n" +
+                $"failed: {lastShipHit.failed}\n" +
+                $"direction: (bottom: {lastShipHit.direction.bottom}, top: {lastShipHit.direction.top}, left: {lastShipHit.direction.left}, right: {lastShipHit.direction.right})\n" +
+                $"hit: {hit}\n" +
+                $"tag: {user_board_matrix[coordinates[0], coordinates[1]].Tag.ToString()}"
+
+                );*/
+            
+            //if the choosen tile is already hit it repeat the selection
+
+            int[] Get_coordinates()
+            {
+                int[] coordinates = new int[] { -1, -1 };
+
+                if (lastShipHit.shipHoocked)//target the ship
+                {
+                    if (!lastShipHit.isVertical)//is horizontal
+                    {
+
+                        if (!lastShipHit.direction.right) { //indica se si ha già provato ad andare a destra 
+
+                            if (lastShipHit.last[0] + 1 < table_dimension) //se è una casella valida
+                                coordinates = TryHitRight();
+                            else
+                                lastShipHit.failed++;
+                            lastShipHit.direction.right = true;
+                        }//right
+                        else if (!lastShipHit.direction.left) {
+
+                            if (lastShipHit.last[0] - 1 >= 0)
+                                coordinates = TryHitLeft();/*problema: 1. first viene modificato da qualche parte. 2. viene passata la coordinata con valori < 0 con left*/
+                            else
+                                lastShipHit.failed++;
+                            lastShipHit.direction.left = true;
+                        }//left
+
+                        if (lastShipHit.counter == 2 && lastShipHit.shipDestroyed == 1 && user_board_matrix[coordinates[0], coordinates[1]].Tag.ToString() == "sea tile")
+                            lastShipHit.isVertical = true;
+
+                        if (coordinates.Contains(-1)) {//riparti da first
+                            if (lastShipHit.failed == 2) {
+
+                                lastShipHit.failed++;
+                                lastShipHit.last = new int[] { lastShipHit.first[0], lastShipHit.first[1] };
+                                lastShipHit.direction = (false, false, false, false);
+                                return coordinates;
+                                //coordinates = Get_coordinates();
+                            }
+                            else if (lastShipHit.failed >= 4) {
+
+                                lastShipHit.StandardValue();
+                                coordinates = HitRandom();
+                            }
+
+                        }
+                        
+                        return coordinates;
+                    }
+                    else if (lastShipHit.isVertical)
+                    {
+                        if (!lastShipHit.direction.bottom && lastShipHit.last[1] + 1 < table_dimension)
+                            return TryHitBottom();
+                        else if (!lastShipHit.direction.top && lastShipHit.last[1] - 1 >= 0)
+                            return TryHitTop();
+                    }//is vertical
+
+                    lastShipHit.StandardValue();
+                }
+
+
+                return HitRandom();
+            }
+
+            int[] HitRandom()
+            {
+                int x = generatore.Next(0, table_dimension);
+                int y = generatore.Next(0, table_dimension);
+                return new int[] { x, y };
+            }
+
+            int[] TryHitLeft()
+            {
+                int x = lastShipHit.last[0] -1;
+                int y = lastShipHit.last[1];
+                lastShipHit.direction.left = true;
+                return new int[] { x, y };
+            }
+
+            int[] TryHitRight()
+            {
+                int x = lastShipHit.last[0] + 1;
+                int y = lastShipHit.last[1];
+                lastShipHit.direction.right = true;
+                return new int[] { x, y };
+            }
+
+            int[] TryHitTop()
+            {
+                int x = lastShipHit.last[0];
+                int y = lastShipHit.last[1] -1;
+                lastShipHit.direction.top = true;
+                return new int[] { x, y };
+            }
+
+            int[] TryHitBottom()
+            {
+                int x = lastShipHit.last[0];
+                int y = lastShipHit.last[1] + 1;
+                lastShipHit.direction.bottom = true;
+                return new int[] { x, y };
+            }
+        }
+
+        private static void EnableButtons(bool defult = true)
+        {
+            if (game_phase == "preparation" && defult)
+            {//initial situation
                 Cambia_tabella.Enabled = true;
                 Button_horizontal.Enabled = true;
                 Button_vertical.Enabled = true;
                 Ship_input.Enabled = true;
                 button_StartGame.Enabled = false;
                 Button_resetGame.Enabled = false;
-                
+                EnableBoard(computer_board_matrix, false);
+                EnableBoard(user_board_matrix, true);
+
             }
             else if (game_phase == "battle" && defult)//after entering the battle phase
             {
@@ -257,25 +470,30 @@ namespace battaglia_navale
                 Ship_input.Enabled = false;
                 button_StartGame.Enabled = false;
                 Button_resetGame.Enabled = true;
+                EnableBoard(computer_board_matrix, true);
+                EnableBoard(user_board_matrix, false);
             }
 
             else if (game_phase == "preparation" && !defult) //when at least one ship is placed
             {
                 button_StartGame.Enabled = true;
                 Button_resetGame.Enabled = true;
+                EnableBoard(computer_board_matrix, false);
+                EnableBoard(user_board_matrix, true);
+
             }
-        }
-    
-        private static void AttackUser() {
-            Random generatore = new Random();
 
-            int[] coordinates = Get_coordinates();
-            HitTile(user_board_matrix[coordinates[0], coordinates[1]], EventArgs.Empty);
-
-
-            int[] Get_coordinates(){
-                return new int[] { generatore.Next(0, table_dimension), generatore.Next(0, table_dimension) };
+            void EnableBoard(Button[,] board_matrix, bool state) {
+                try { 
+                    foreach (Button tile in board_matrix) { 
+                        tile.Enabled = state;
+                    }
+                }
+                catch { return; }
             }
+
+
         }
+
     }
 }

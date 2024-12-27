@@ -51,7 +51,6 @@ namespace battaglia_navale
             Close();
         }
 
-
         private void Define_UserTable()
         {
             int table_width = Convert.ToInt32(Width_input.Value);
