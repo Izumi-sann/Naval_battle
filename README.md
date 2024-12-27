@@ -15,3 +15,5 @@ just don't click X when resetting the table if you don't wan't the program to cr
 and what's more? 
 ### have fun
 
+background pic: https://live-hdwallpapers.com/ghibli-art-style-lonely-island.html
+
