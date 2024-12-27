@@ -14,9 +14,10 @@ namespace battaglia_navale
         private int[] position_matrix { get; set; } public int[] Position { get => position_matrix; } // posizione della casella
         private bool isDestroyed { get; set; } public bool IsDestroyed { get => isDestroyed; } // casella distrutta
 
-
+        public string tile_type;
         public ShipTile(string name, int[] position, string sender)
         {
+            this.tile_type = "ship";
             this.isDestroyed = false;
             this.position_matrix = position;
 

@@ -9,10 +9,11 @@ namespace battaglia_navale
     internal class SeaTile : Button
     {
         public bool isHit { get; set; }
-
+        public string tile_type;
         public SeaTile()
         {
             isHit = false;
+            this.tile_type = "sea";
         }
 
         public void HitTile()

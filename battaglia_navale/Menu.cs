@@ -13,6 +13,12 @@ namespace battaglia_navale
 {
     public partial class Menu : Form
     {
+        public static Panel UserBoard_backup;
+        public static Button[,] UserBoard_matrix_backup;
+
+        public static Panel ComputerBoard_backup;
+        public static Button[,] ComputerBoard_matrix_backup;
+
         public Menu()
         {
             InitializeComponent();
@@ -40,7 +46,7 @@ namespace battaglia_navale
             Table.table_dimension = Convert.ToInt32(Width_input.Value);
 
             Cursor = Cursors.Default;
-            
+
             //close the form
             Close();
         }
@@ -61,6 +67,7 @@ namespace battaglia_navale
             //define the table 
             Button[,] matrice_tabella = ResizeMatrix(Table.user_board_matrix, table_width, table_height);
 
+
             //create the buttons matrix
             for (int row = 0; row < table_height; row++)
                 for (int column = 0; column < table_width; column++)
@@ -71,7 +78,7 @@ namespace battaglia_navale
 
             Table.user_board_matrix = matrice_tabella;
         }
-        
+
         private void Define_ComputerTable()
         {
             int table_width = Convert.ToInt32(Width_input.Value);
@@ -96,34 +103,6 @@ namespace battaglia_navale
 
             //aggiorna matrice
             Table.computer_board_matrix = matrice_tabella;
-        }
-        
-        public void create_computer_ship(string key) { 
-            Random generatore = new Random();
-            Ship new_ship;
-
-            //define parameters
-            bool IsVertical = generatore.Next(0, 2) == 0 ? false : true;
-            int lenght = Table.GetLenght(key);
-            int dimension = Convert.ToInt32(Width_input.Value);
-            while (true) {
-                //define coordinates until they're accepted
-                int x = generatore.Next(0, IsVertical ? dimension : dimension - lenght +1);//get the second value considering the ship's lenght and table dimension
-                int y = generatore.Next(0, IsVertical ? dimension - lenght +1 : dimension);
-                int[] coordinates = new int[] { x, y };
-
-                try { 
-                    if (Table.Computer_board.InvokeRequired)
-                        Table.Computer_board.Invoke((MethodInvoker)delegate {
-                            new_ship = new Ship(IsVertical, lenght, coordinates, key, "computer");
-                        });
-                    else
-                        new_ship = new Ship(IsVertical, lenght, coordinates, key, "computer");
-                    break;// if the ship is created, exit the loop  
-                } catch (Exception) {
-                    continue; //else , try again
-                }
-            }
         }
 
         private static Button[,] ResizeMatrix(Button[,] oldMatrix, int newRows, int newCols)
@@ -160,6 +139,7 @@ namespace battaglia_navale
                 });
 
 
+
             void create_button() {
                 tile.Parent = Playing_board;
                 tile.Top = row * 52;
@@ -182,12 +162,9 @@ namespace battaglia_navale
 
         private static bool VerifyTableDimension(int table_width, Panel board, Button[,] board_matrix)
         {
-
             if (table_width < Table.table_dimension) {
-                for (int x = Table.table_dimension - 1; x >= table_width; x--)
-                {
-                    for (int y = x; y >= 0; y--)
-                    {
+                for (int x = Table.table_dimension - 1; x >= table_width; x--) {
+                    for (int y = x; y >= 0; y--) {
                         Table.Computer_board.Invoke((MethodInvoker)delegate
                         {
                                 board.Controls.Remove(board_matrix[x, y]);
@@ -201,9 +178,6 @@ namespace battaglia_navale
                         });
                     }
                 }
-
-
-                //board_matrix = new Button[table_width, table_width];
 
                 return true;
             }
