@@ -15,20 +15,16 @@
       "RelativeMoniker": "D:0:0:{B46C5CF5-A6E5-44BF-80AA-D54FD2DE6017}|battaglia_navale\\battaglia_navale.csproj|solutionrelative:battaglia_navale\\seatile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B46C5CF5-A6E5-44BF-80AA-D54FD2DE6017}|battaglia_navale\\battaglia_navale.csproj|c:\\users\\gamba\\desktop\\naval_battle\\battaglia_navale\\shiptile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B46C5CF5-A6E5-44BF-80AA-D54FD2DE6017}|battaglia_navale\\battaglia_navale.csproj|solutionrelative:battaglia_navale\\shiptile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{B46C5CF5-A6E5-44BF-80AA-D54FD2DE6017}|battaglia_navale\\battaglia_navale.csproj|c:\\users\\gamba\\desktop\\naval_battle\\battaglia_navale\\ship.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B46C5CF5-A6E5-44BF-80AA-D54FD2DE6017}|battaglia_navale\\battaglia_navale.csproj|solutionrelative:battaglia_navale\\ship.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B46C5CF5-A6E5-44BF-80AA-D54FD2DE6017}|battaglia_navale\\battaglia_navale.csproj|c:\\users\\gamba\\desktop\\naval_battle\\battaglia_navale\\shipdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B46C5CF5-A6E5-44BF-80AA-D54FD2DE6017}|battaglia_navale\\battaglia_navale.csproj|solutionrelative:battaglia_navale\\shipdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B46C5CF5-A6E5-44BF-80AA-D54FD2DE6017}|battaglia_navale\\battaglia_navale.csproj|c:\\users\\gamba\\desktop\\naval_battle\\battaglia_navale\\shiptile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B46C5CF5-A6E5-44BF-80AA-D54FD2DE6017}|battaglia_navale\\battaglia_navale.csproj|solutionrelative:battaglia_navale\\shiptile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B46C5CF5-A6E5-44BF-80AA-D54FD2DE6017}|battaglia_navale\\battaglia_navale.csproj|c:\\users\\gamba\\desktop\\naval_battle\\battaglia_navale\\table.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B46C5CF5-A6E5-44BF-80AA-D54FD2DE6017}|battaglia_navale\\battaglia_navale.csproj|solutionrelative:battaglia_navale\\table.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B46C5CF5-A6E5-44BF-80AA-D54FD2DE6017}|battaglia_navale\\battaglia_navale.csproj|c:\\users\\gamba\\desktop\\naval_battle\\battaglia_navale\\shipdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B46C5CF5-A6E5-44BF-80AA-D54FD2DE6017}|battaglia_navale\\battaglia_navale.csproj|solutionrelative:battaglia_navale\\shipdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -42,7 +38,7 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "ShipTile.cs",
               "DocumentMoniker": "C:\\Users\\gamba\\Desktop\\Naval_battle\\battaglia_navale\\ShipTile.cs",
               "RelativeDocumentMoniker": "battaglia_navale\\ShipTile.cs",
@@ -55,13 +51,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 3,
               "Title": "Ship.cs",
               "DocumentMoniker": "C:\\Users\\gamba\\Desktop\\Naval_battle\\battaglia_navale\\Ship.cs",
               "RelativeDocumentMoniker": "battaglia_navale\\Ship.cs",
               "ToolTip": "C:\\Users\\gamba\\Desktop\\Naval_battle\\battaglia_navale\\Ship.cs",
               "RelativeToolTip": "battaglia_navale\\Ship.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAD4AAAAgAAAAAAAAAA==",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAADcAAABwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-16T22:59:56.776Z",
               "IsPinned": true
@@ -100,10 +96,11 @@
               "RelativeDocumentMoniker": "battaglia_navale\\Menu.cs",
               "ToolTip": "C:\\Users\\gamba\\Desktop\\Naval_battle\\battaglia_navale\\Menu.cs",
               "RelativeToolTip": "battaglia_navale\\Menu.cs",
-              "ViewState": "AgIAAFEAAAAAAAAAAAAgwJUAAAAQAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-08T17:40:58.552Z",
-              "IsPinned": true
+              "IsPinned": true,
+              "EditorCaption": ""
             },
             {
               "$type": "Bookmark",
@@ -129,22 +126,10 @@
               "RelativeDocumentMoniker": "battaglia_navale\\Table.cs",
               "ToolTip": "C:\\Users\\gamba\\Desktop\\Naval_battle\\battaglia_navale\\Table.cs",
               "RelativeToolTip": "battaglia_navale\\Table.cs",
-              "ViewState": "AgIAAPoAAAAAAAAAAAAQwDEBAAAMAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAALYBAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-08T17:40:57.25Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Table.Designer.cs",
-              "DocumentMoniker": "C:\\Users\\gamba\\Desktop\\Naval_battle\\battaglia_navale\\Table.Designer.cs",
-              "RelativeDocumentMoniker": "battaglia_navale\\Table.Designer.cs",
-              "ToolTip": "C:\\Users\\gamba\\Desktop\\Naval_battle\\battaglia_navale\\Table.Designer.cs",
-              "RelativeToolTip": "battaglia_navale\\Table.Designer.cs",
-              "ViewState": "AgIAAJYAAAAAAAAAAAAYwJ0AAAA1AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-23T20:50:18.184Z"
             }
           ]
         }

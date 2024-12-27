@@ -146,10 +146,16 @@ namespace battaglia_navale
         {
             DialogResult result = DialogResult.None;
 
-            if (Remaining_ship_tiles.user == 0)
+            if (Remaining_ship_tiles.user == 0) { 
                 result = MessageBox.Show("GAME OVER! IL VINCITORE è Computer!", "sconfitta", MessageBoxButtons.RetryCancel, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
-            else if (Remaining_ship_tiles.computer == 0)
+                game_phase = "end";
+                EnableButtons();
+            }
+            else if (Remaining_ship_tiles.computer == 0) { 
                 result = MessageBox.Show("THE WINNER IS User! YOU HAVE BEATEN Computer!", "vittoria", MessageBoxButtons.RetryCancel, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
+                game_phase = "end";
+                EnableButtons();
+            }
 
             if (result == DialogResult.Retry)
                 ResetTable_click();
@@ -304,10 +310,11 @@ namespace battaglia_navale
             //if you hit ship
             if (hit && user_board_matrix[coordinates[0], coordinates[1]].Tag.ToString() == "ship tile")
             {
-                if (lastShipHit.shipDestroyed == 0)
+                if (lastShipHit.shipDestroyed == 0)//first ship_tile hit in the current ship
                 {
                     lastShipHit.first = new int[] { coordinates[0], coordinates[1] };
                     lastShipHit.shipHoocked = true;
+                    lastShipHit.counter = 0;
                 }
                 lastShipHit.last = new int[] { coordinates[0], coordinates[1] };
                 lastShipHit.direction = (false, false, false, false);
@@ -325,9 +332,10 @@ namespace battaglia_navale
                 lastShipHit.failed = 0;
             }
             //nothing is hit
-            else { lastShipHit.failed++; }
-                
-                
+            else { 
+                lastShipHit.failed++;
+                lastShipHit.counter++;
+            }        
 
             /*MessageBox.Show($"first: [{lastShipHit.first[0]}, {lastShipHit.first[1]}]\n" +
                 $"coordinates: [{coordinates[0]}, {coordinates[1]}]\n" +
@@ -343,17 +351,14 @@ namespace battaglia_navale
 
                 );*/
             
-            //if the choosen tile is already hit it repeat the selection
-
             int[] Get_coordinates()
             {
                 int[] coordinates = new int[] { -1, -1 };
 
                 if (lastShipHit.shipHoocked)//target the ship
                 {
-                    if (!lastShipHit.isVertical)//is horizontal
+                    if (!lastShipHit.isVertical)
                     {
-
                         if (!lastShipHit.direction.right) { //indica se si ha già provato ad andare a destra 
 
                             if (lastShipHit.last[0] + 1 < table_dimension) //se è una casella valida
@@ -371,45 +376,55 @@ namespace battaglia_navale
                             lastShipHit.direction.left = true;
                         }//left
 
-                        if (lastShipHit.counter == 2 && lastShipHit.shipDestroyed == 1 && user_board_matrix[coordinates[0], coordinates[1]].Tag.ToString() == "sea tile")
+                        if (lastShipHit.counter >= 2 && lastShipHit.shipDestroyed == 1 && (coordinates[0] < 0 || user_board_matrix[coordinates[0], coordinates[1]].Tag.ToString() == "sea tile")) { 
                             lastShipHit.isVertical = true;
-
-                        if (coordinates.Contains(-1)) {//riparti da first
-                            if (lastShipHit.failed == 2) {
-
-                                lastShipHit.failed++;
-                                lastShipHit.last = new int[] { lastShipHit.first[0], lastShipHit.first[1] };
-                                lastShipHit.direction = (false, false, false, false);
-                                return coordinates;
-                                //coordinates = Get_coordinates();
-                            }
-                            else if (lastShipHit.failed >= 4) {
-
-                                lastShipHit.StandardValue();
-                                coordinates = HitRandom();
-                            }
-
                         }
-                        
-                        return coordinates;
-                    }
+                    }//is horizontal
                     else if (lastShipHit.isVertical)
                     {
-                        if (!lastShipHit.direction.bottom && lastShipHit.last[1] + 1 < table_dimension)
-                            return TryHitBottom();
-                        else if (!lastShipHit.direction.top && lastShipHit.last[1] - 1 >= 0)
-                            return TryHitTop();
+                        if (!lastShipHit.direction.bottom)
+                        { //indica se si ha già provato ad andare sotto
+                            if (lastShipHit.last[1] + 1 < table_dimension) //se è una casella valida
+                                coordinates = TryHitBottom();
+                            else
+                                lastShipHit.failed++;
+                            lastShipHit.direction.bottom = true;
+                        }//bottom
+                        else if (!lastShipHit.direction.top)
+                        {
+                            if (lastShipHit.last[1] - 1 >= 0) //se è una casella valida
+                                coordinates = TryHitTop();
+                            else
+                                lastShipHit.failed++;
+                            lastShipHit.direction.top = true;
+                        }//top
                     }//is vertical
-
-                    lastShipHit.StandardValue();
                 }
 
+                if (coordinates.Contains(-1))
+                {
+                    if (lastShipHit.failed == 2)
+                    {
+                        lastShipHit.failed++;
+                        lastShipHit.last = new int[] { lastShipHit.first[0], lastShipHit.first[1] };
+                        lastShipHit.direction = (false, false, false, false);
+                        return coordinates;
+                    }//riparti da first
+                    else if (lastShipHit.failed >= 4)
+                    {
+                        lastShipHit.StandardValue();
+                        coordinates = HitRandom();
+                    }//rimuovi l'aggancio, barca distrutta completamente
 
-                return HitRandom();
+                }//if the coordinates weren't modified the ship either is fully destroyed or there are no more ship_tile in the current direction
+
+
+                return lastShipHit.shipHoocked ? coordinates : HitRandom();
             }
 
             int[] HitRandom()
             {
+                lastShipHit.counter = 0;
                 int x = generatore.Next(0, table_dimension);
                 int y = generatore.Next(0, table_dimension);
                 return new int[] { x, y };
@@ -419,7 +434,6 @@ namespace battaglia_navale
             {
                 int x = lastShipHit.last[0] -1;
                 int y = lastShipHit.last[1];
-                lastShipHit.direction.left = true;
                 return new int[] { x, y };
             }
 
@@ -427,7 +441,6 @@ namespace battaglia_navale
             {
                 int x = lastShipHit.last[0] + 1;
                 int y = lastShipHit.last[1];
-                lastShipHit.direction.right = true;
                 return new int[] { x, y };
             }
 
@@ -435,15 +448,13 @@ namespace battaglia_navale
             {
                 int x = lastShipHit.last[0];
                 int y = lastShipHit.last[1] -1;
-                lastShipHit.direction.top = true;
                 return new int[] { x, y };
             }
 
-            int[] TryHitBottom()
+            int[] TryHitBottom() 
             {
                 int x = lastShipHit.last[0];
                 int y = lastShipHit.last[1] + 1;
-                lastShipHit.direction.bottom = true;
                 return new int[] { x, y };
             }
         }
@@ -473,7 +484,17 @@ namespace battaglia_navale
                 EnableBoard(computer_board_matrix, true);
                 EnableBoard(user_board_matrix, false);
             }
-
+            else if (game_phase == "end" && defult)
+            {
+                Button_horizontal.Enabled = false;
+                Cambia_tabella.Enabled = false;
+                Button_vertical.Enabled = false;
+                Ship_input.Enabled = false;
+                button_StartGame.Enabled = false;
+                Button_resetGame.Enabled = true;
+                EnableBoard(computer_board_matrix, false);
+                EnableBoard(user_board_matrix, false);
+            }
             else if (game_phase == "preparation" && !defult) //when at least one ship is placed
             {
                 button_StartGame.Enabled = true;
@@ -491,8 +512,6 @@ namespace battaglia_navale
                 }
                 catch { return; }
             }
-
-
         }
 
     }
