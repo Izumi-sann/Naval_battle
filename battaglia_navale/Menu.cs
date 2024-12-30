@@ -21,15 +21,19 @@ namespace battaglia_navale
 
         public Menu()
         {
-            InitializeComponent();
+            if (Table.table_dimension == 0)
+                InitializeComponent_reset();
+            else
+                InitializeComponent();
         }
 
         public void DefinisciTabella(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
 
-            Table.Computer_board.Invoke((MethodInvoker)delegate {
-                Table.Computer_board.Location = new Point(Table.User_board.Location.X + Convert.ToInt32(Width_input.Value) * 68 +40, Table.User_board.Location.Y);
+            Table.Computer_board.Invoke((MethodInvoker)delegate
+            {
+                Table.Computer_board.Location = new Point(Table.User_board.Location.X + Convert.ToInt32(Width_input.Value) * 68 + 40, Table.User_board.Location.Y);
             });
 
             Thread user = new Thread(Define_UserTable);
@@ -43,6 +47,9 @@ namespace battaglia_navale
             user.Join();
             computer.Join();
 
+            if (Table.table_dimension == 0)
+                SetShipNumbers();
+
             Table.table_dimension = Convert.ToInt32(Width_input.Value);
 
             Cursor = Cursors.Default;
@@ -51,6 +58,23 @@ namespace battaglia_navale
             Close();
         }
 
+        private void SetShipNumbers() 
+        {
+            Dictionary<string, int> ship_numbers = new Dictionary<string, int>() {
+                { "portaerei(5)", Convert.ToInt32(aircraft_input.Value)},
+                { "corazzata(4)", Convert.ToInt32(armored_input.Value) },
+                { "incrociatore(3)", Convert.ToInt32(cruiser_input.Value)},
+                { "cacciatorpediniere(3)", Convert.ToInt32(destroyer_input.Value)},
+                { "sottomarino(2)", Convert.ToInt32(submarine_input.Value) }
+            };
+
+            foreach (string key in Table.ships_counter.Keys)
+            {
+                Table.ships_counter[key].user.ModifyShipCounter(ship_numbers[key]);
+                Table.ships_counter[key].computer.ModifyShipCounter(ship_numbers[key]);
+            }
+        }
+        
         private void Define_UserTable()
         {
             int table_width = Convert.ToInt32(Width_input.Value);
@@ -73,7 +97,7 @@ namespace battaglia_navale
                 for (int column = 0; column < table_width; column++)
                     Table.User_board.Invoke((MethodInvoker)delegate
                     {
-                        DefineButton(matrice_tabella, Table.User_board, new int[] { column, row});
+                        DefineButton(matrice_tabella, Table.User_board, new int[] { column, row });
                     });
 
             Table.user_board_matrix = matrice_tabella;
@@ -86,19 +110,21 @@ namespace battaglia_navale
 
 
             //verify whether the new table is smaller than the previous one, and delete the extra buttons
-            if(VerifyTableDimension(table_width, Table.Computer_board, Table.computer_board_matrix)) {
+            if (VerifyTableDimension(table_width, Table.Computer_board, Table.computer_board_matrix))
+            {
                 Table.computer_board_matrix = ResizeMatrix(Table.computer_board_matrix, table_width, table_height);
                 return;
             }
 
             //define the table 
             Button[,] matrice_tabella = ResizeMatrix(Table.computer_board_matrix, table_width, table_height);
-            
+
             //create the buttons matrix
             for (int row = 0; row < table_height; row++)
                 for (int column = 0; column < table_width; column++)
-                    Table.Computer_board.Invoke((MethodInvoker)delegate{
-                            DefineButton(matrice_tabella, Table.Computer_board, new int[] { column, row });
+                    Table.Computer_board.Invoke((MethodInvoker)delegate
+                    {
+                        DefineButton(matrice_tabella, Table.Computer_board, new int[] { column, row });
                     });
 
             //aggiorna matrice
@@ -134,13 +160,15 @@ namespace battaglia_navale
 
             // Utilizza Invoke per assegnare il Parent del bottone
             if (matrice_tabella[column, row] == null)
-                Playing_board.Invoke((MethodInvoker)delegate {
+                Playing_board.Invoke((MethodInvoker)delegate
+                {
                     create_button();
                 });
 
 
 
-            void create_button() {
+            void create_button()
+            {
                 tile.Parent = Playing_board;
                 tile.Top = row * 52;
                 tile.Left = column * 70;
@@ -156,25 +184,28 @@ namespace battaglia_navale
 
                 // Events
                 tile.Click += new EventHandler(Table.Board_buttonClick);
-                matrice_tabella[column, row] = tile;            
+                matrice_tabella[column, row] = tile;
             }
         }
 
         private static bool VerifyTableDimension(int table_width, Panel board, Button[,] board_matrix)
         {
-            if (table_width < Table.table_dimension) {
-                for (int x = Table.table_dimension - 1; x >= table_width; x--) {
-                    for (int y = x; y >= 0; y--) {
+            if (table_width < Table.table_dimension)
+            {
+                for (int x = Table.table_dimension - 1; x >= table_width; x--)
+                {
+                    for (int y = x; y >= 0; y--)
+                    {
                         Table.Computer_board.Invoke((MethodInvoker)delegate
                         {
-                                board.Controls.Remove(board_matrix[x, y]);
-                                board.Controls.Remove(board_matrix[y, x]);
-                                
-                                board_matrix[y, x].Dispose();
-                                board_matrix[x, y].Dispose();
-                                
-                                board_matrix[x, y] = null;
-                                board_matrix[y, x] = null;
+                            board.Controls.Remove(board_matrix[x, y]);
+                            board.Controls.Remove(board_matrix[y, x]);
+
+                            board_matrix[y, x].Dispose();
+                            board_matrix[x, y].Dispose();
+
+                            board_matrix[x, y] = null;
+                            board_matrix[y, x] = null;
                         });
                     }
                 }

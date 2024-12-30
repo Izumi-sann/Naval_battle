@@ -7,14 +7,7 @@ using System.Xml.Linq;
 /*log2 23-12-24 : troppe variabili di gestione (es: user_board_matrix) in questo file. non va bene.*/
 /*log3 24-12-24 : continuo a maledirmi per non aver creato le due classi per computer e user. fa male.*/
 /*log4 24-12-24 : non ce la faccio piùù cribbio! come cavolo hai mai pensato ad usare la form per tutto. diamine. voglio spararmi. mi odio COSI' tanto che non ho idea. voglio una macchina del tempo per prendermi a sberle. */
-/*sviluppo_gameplay
--funzione di reset con aggiunta di appostito tasto **medium --> done
--opzione di reset in messagebox quando la partita termina **easy --> done
--algoritmo di attacco per computer **difficult --> in progress
--verifica presenza di una nave prima di poter iniziare **easy --> done
--disattiva i bottoni non necessari nella varie fasi **easy --> done
--disattiva la board nemica in preparazione e la board user in battaglia **easy
- */
+
 namespace battaglia_navale
 {
     public partial class Table : Form
@@ -149,11 +142,14 @@ namespace battaglia_navale
             if (Remaining_ship_tiles.user == 0) { 
                 result = MessageBox.Show("GAME OVER! IL VINCITORE è Computer!", "sconfitta", MessageBoxButtons.RetryCancel, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
                 game_phase = "end";
+                IsUserTurn = true;
                 EnableButtons();
             }
             else if (Remaining_ship_tiles.computer == 0) { 
                 result = MessageBox.Show("THE WINNER IS User! YOU HAVE BEATEN Computer!", "vittoria", MessageBoxButtons.RetryCancel, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
                 game_phase = "end";
+                IsUserTurn = true;
+
                 EnableButtons();
             }
 
@@ -173,14 +169,6 @@ namespace battaglia_navale
             table_dimension = 0;
 
             game_phase = "preparation";
-            ships_counter = new Dictionary<string, (ShipData user, ShipData computer)>
-            {
-                { "portaerei(5)", (new ShipData(1), new ShipData(1)) },
-                { "corazzata(4)", (new ShipData(1), new ShipData(1)) },
-                { "incrociatore(3)", (new ShipData(2), new ShipData(2)) },
-                { "cacciatorpediniere(3)", (new ShipData(1), new ShipData(1)) },
-                { "sottomarino(2)", (new ShipData(1), new ShipData(1)) }
-            };
 
             new Menu().ShowDialog();
             EnableButtons();
@@ -312,9 +300,11 @@ namespace battaglia_navale
             {
                 if (lastShipHit.shipDestroyed == 0)//first ship_tile hit in the current ship
                 {
+                    lastShipHit.StandardValue();
                     lastShipHit.first = new int[] { coordinates[0], coordinates[1] };
                     lastShipHit.shipHoocked = true;
                     lastShipHit.counter = 0;
+                    lastShipHit.isVertical = new Random().Next(0, 10) > 4 ? true : false;
                 }
                 lastShipHit.last = new int[] { coordinates[0], coordinates[1] };
                 lastShipHit.direction = (false, false, false, false);
@@ -355,51 +345,31 @@ namespace battaglia_navale
             {
                 int[] coordinates = new int[] { -1, -1 };
 
-                if (lastShipHit.shipHoocked)//target the ship
+                if (!lastShipHit.shipHoocked)//target the ship
+                    return HitRandom();    
+
+                if (lastShipHit.isVertical)
                 {
-                    if (!lastShipHit.isVertical)
-                    {
-                        if (!lastShipHit.direction.right) { //indica se si ha già provato ad andare a destra 
+                    if (!lastShipHit.direction.bottom)//bottom
+                        coordinates = TryHitBottom();
+                    else if (!lastShipHit.direction.top)//top
+                        coordinates = TryHitTop();
 
-                            if (lastShipHit.last[0] + 1 < table_dimension) //se è una casella valida
-                                coordinates = TryHitRight();
-                            else
-                                lastShipHit.failed++;
-                            lastShipHit.direction.right = true;
-                        }//right
-                        else if (!lastShipHit.direction.left) {
+                    if (lastShipHit.counter >= 2 && lastShipHit.shipDestroyed == 1 && (coordinates[1] < 0 || user_board_matrix[coordinates[0], coordinates[1]].Tag.ToString() == "sea tile"))
+                        lastShipHit.isVertical = false;
+                    
+                }//is vertical
+                else
+                {
+                    if (!lastShipHit.direction.right) //indica se si ha già provato ad andare a destra, right
+                        coordinates = TryHitRight();
+                    else if (!lastShipHit.direction.left)//left
+                        coordinates = TryHitLeft();
 
-                            if (lastShipHit.last[0] - 1 >= 0)
-                                coordinates = TryHitLeft();/*problema: 1. first viene modificato da qualche parte. 2. viene passata la coordinata con valori < 0 con left*/
-                            else
-                                lastShipHit.failed++;
-                            lastShipHit.direction.left = true;
-                        }//left
+                    if (lastShipHit.counter >= 2 && lastShipHit.shipDestroyed == 1 && (coordinates[0] < 0 || user_board_matrix[coordinates[0], coordinates[1]].Tag.ToString() == "sea tile"))
+                        lastShipHit.isVertical = true;
 
-                        if (lastShipHit.counter >= 2 && lastShipHit.shipDestroyed == 1 && (coordinates[0] < 0 || user_board_matrix[coordinates[0], coordinates[1]].Tag.ToString() == "sea tile")) { 
-                            lastShipHit.isVertical = true;
-                        }
-                    }//is horizontal
-                    else if (lastShipHit.isVertical)
-                    {
-                        if (!lastShipHit.direction.bottom)
-                        { //indica se si ha già provato ad andare sotto
-                            if (lastShipHit.last[1] + 1 < table_dimension) //se è una casella valida
-                                coordinates = TryHitBottom();
-                            else
-                                lastShipHit.failed++;
-                            lastShipHit.direction.bottom = true;
-                        }//bottom
-                        else if (!lastShipHit.direction.top)
-                        {
-                            if (lastShipHit.last[1] - 1 >= 0) //se è una casella valida
-                                coordinates = TryHitTop();
-                            else
-                                lastShipHit.failed++;
-                            lastShipHit.direction.top = true;
-                        }//top
-                    }//is vertical
-                }
+                }//is horizontal
 
                 if (coordinates.Contains(-1))
                 {
@@ -418,8 +388,7 @@ namespace battaglia_navale
 
                 }//if the coordinates weren't modified the ship either is fully destroyed or there are no more ship_tile in the current direction
 
-
-                return lastShipHit.shipHoocked ? coordinates : HitRandom();
+                return coordinates;
             }
 
             int[] HitRandom()
@@ -430,31 +399,67 @@ namespace battaglia_navale
                 return new int[] { x, y };
             }
 
-            int[] TryHitLeft()
-            {
-                int x = lastShipHit.last[0] -1;
-                int y = lastShipHit.last[1];
-                return new int[] { x, y };
-            }
-
             int[] TryHitRight()
             {
-                int x = lastShipHit.last[0] + 1;
-                int y = lastShipHit.last[1];
+                int x = -1, y = -1;
+
+                if (lastShipHit.last[0] + 1 < table_dimension){ //se è una casella valida
+                    x = lastShipHit.last[0] + 1;
+                    y = lastShipHit.last[1];                                               
+                }
+                else
+                    lastShipHit.failed++;
+
+                lastShipHit.direction.right = true;
+
                 return new int[] { x, y };
             }
 
-            int[] TryHitTop()
+            int[] TryHitLeft()
             {
-                int x = lastShipHit.last[0];
-                int y = lastShipHit.last[1] -1;
+                int x = -1, y = -1;
+
+                if (lastShipHit.last[0] - 1 >= 0) { 
+                    x = lastShipHit.last[0] -1;
+                    y = lastShipHit.last[1];
+                }
+                else
+                    lastShipHit.failed++;
+
+                lastShipHit.direction.left = true;
+
                 return new int[] { x, y };
             }
 
             int[] TryHitBottom() 
             {
-                int x = lastShipHit.last[0];
-                int y = lastShipHit.last[1] + 1;
+                int x = -1, y = -1;
+                
+                if (lastShipHit.last[1] + 1 < table_dimension) { //se è una casella valida
+                    x = lastShipHit.last[0];
+                    y = lastShipHit.last[1] + 1;
+                } 
+                else
+                    lastShipHit.failed++;
+                
+                lastShipHit.direction.bottom = true;
+                
+                return new int[] { x, y };
+            }
+
+            int[] TryHitTop()
+            {
+                int x = -1, y = -1;
+
+                if (lastShipHit.last[1] - 1 >= 0) { 
+                    x = lastShipHit.last[0];
+                    y = lastShipHit.last[1] -1;
+                }
+                else
+                    lastShipHit.failed++;
+
+                lastShipHit.direction.top = true;
+
                 return new int[] { x, y };
             }
         }

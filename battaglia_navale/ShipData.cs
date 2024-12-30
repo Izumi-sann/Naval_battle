@@ -17,5 +17,13 @@
             this.Ships[this._reset_counter - this.Counter] = new_ship;
             this.Counter--;
         }
+
+        public void ModifyShipCounter(int new_counter){
+            if (new_counter > 0) { 
+                this.Counter = new_counter;
+                this._reset_counter = new_counter;
+                this.Ships = new Ship[new_counter];
+            }
+        }
     }
 }
